@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; portfolio-lib v1.0.1 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=97502c36" />
+
+  
+    <link rel="canonical" href="https://your-username.github.io/Portfolio-lib/installation.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c4955cf7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="portfolio-lib documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            portfolio-lib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#method-1-using-pip-recommended">Method 1: Using pip (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-2-from-source">Method 2: From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-3-development-installation">Method 3: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-installation-issues">Common Installation Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-dependencies">Optional Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-installation">Complete Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation">Docker Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-integration">Jupyter Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ide-setup">IDE Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-and-uninstall">Update and Uninstall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#need-help">Need Help?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-specific-notes">System-Specific Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">portfolio_lib Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visual_guide.html">Visual Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; Support:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">portfolio-lib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/Portfolio-lib/blob/main/docs/source/installation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This guide will help you install and set up portfolio-lib in your environment.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p><strong>Python Version</strong>
+- Python 3.8 or higher
+- Recommended: Python 3.9+</p>
+<p><strong>Dependencies</strong>
+- numpy &gt;= 1.20.0
+- pandas &gt;= 1.3.0
+- matplotlib &gt;= 3.4.0
+- scipy &gt;= 1.7.0</p>
+</section>
+<section id="installation-methods">
+<h2>Installation Methods<a class="headerlink" href="#installation-methods" title="Link to this heading"></a></h2>
+<section id="method-1-using-pip-recommended">
+<h3>Method 1: Using pip (Recommended)<a class="headerlink" href="#method-1-using-pip-recommended" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+</section>
+<section id="method-2-from-source">
+<h3>Method 2: From Source<a class="headerlink" href="#method-2-from-source" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/portfolio-lib.git
+<span class="nb">cd</span><span class="w"> </span>portfolio-lib
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="method-3-development-installation">
+<h3>Method 3: Development Installation<a class="headerlink" href="#method-3-development-installation" title="Link to this heading"></a></h3>
+<p>For contributors and developers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/portfolio-lib.git
+<span class="nb">cd</span><span class="w"> </span>portfolio-lib
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</pre></div>
+</div>
+<p>This installs additional development dependencies like pytest, black, and flake8.</p>
+</section>
+</section>
+<section id="virtual-environment-setup">
+<h2>Virtual Environment Setup<a class="headerlink" href="#virtual-environment-setup" title="Link to this heading"></a></h2>
+<p>It’s recommended to use a virtual environment:</p>
+<p><strong>Using venv (Python 3.3+)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>portfolio_env
+<span class="nb">source</span><span class="w"> </span>portfolio_env/bin/activate<span class="w">  </span><span class="c1"># On Windows: portfolio_env\Scripts\activate</span>
+pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>Using conda</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>portfolio_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+conda<span class="w"> </span>activate<span class="w"> </span>portfolio_env
+pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<p>Test your installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">portfolio_lib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.indicators</span><span class="w"> </span><span class="kn">import</span> <span class="n">TechnicalIndicators</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Portfolio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">RiskMetrics</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;portfolio-lib version: </span><span class="si">{</span><span class="n">portfolio_lib</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quick test</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">106</span><span class="p">])</span>
+<span class="n">sma</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SMA calculation successful: </span><span class="si">{</span><span class="n">sma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>portfolio-lib version: 1.0.0
+SMA calculation successful: 103.20
+</pre></div>
+</div>
+</section>
+<section id="common-installation-issues">
+<h2>Common Installation Issues<a class="headerlink" href="#common-installation-issues" title="Link to this heading"></a></h2>
+<p><strong>Issue: Import Error</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ImportError: No module named &#39;portfolio_lib&#39;
+</pre></div>
+</div>
+<p><strong>Solution:</strong>
+- Verify installation: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">portfolio-lib</span></code>
+- Check virtual environment is activated
+- Reinstall: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">portfolio-lib</span> <span class="pre">&amp;&amp;</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">portfolio-lib</span></code></p>
+<p><strong>Issue: Dependency Conflicts</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR: package-name has requirement numpy&gt;=1.20.0, but you have numpy 1.19.0
+</pre></div>
+</div>
+<p><strong>Solution:</strong>
+- Update dependencies: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">numpy</span> <span class="pre">pandas</span> <span class="pre">matplotlib</span> <span class="pre">scipy</span></code>
+- Use fresh virtual environment</p>
+<p><strong>Issue: Windows Installation Problems</strong></p>
+<p><strong>Solution:</strong>
+- Install Visual C++ Build Tools
+- Use pre-compiled wheels: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--only-binary=all</span> <span class="pre">portfolio-lib</span></code></p>
+</section>
+<section id="optional-dependencies">
+<h2>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading"></a></h2>
+<p>For enhanced functionality, install optional packages:</p>
+<p><strong>Plotting and Visualization</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>plotly&gt;<span class="o">=</span><span class="m">5</span>.0.0<span class="w"> </span>seaborn&gt;<span class="o">=</span><span class="m">0</span>.11.0
+</pre></div>
+</div>
+<p><strong>Data Sources</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>yfinance&gt;<span class="o">=</span><span class="m">0</span>.1.70<span class="w"> </span>alpha-vantage&gt;<span class="o">=</span><span class="m">2</span>.3.0
+</pre></div>
+</div>
+<p><strong>Advanced Analytics</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>scikit-learn&gt;<span class="o">=</span><span class="m">1</span>.0.0<span class="w"> </span>statsmodels&gt;<span class="o">=</span><span class="m">0</span>.13.0
+</pre></div>
+</div>
+<p><strong>Performance Optimization</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numba&gt;<span class="o">=</span><span class="m">0</span>.56.0<span class="w"> </span>cython&gt;<span class="o">=</span><span class="m">0</span>.29.0
+</pre></div>
+</div>
+</section>
+<section id="complete-installation">
+<h2>Complete Installation<a class="headerlink" href="#complete-installation" title="Link to this heading"></a></h2>
+<p>For a full-featured installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib<span class="o">[</span>complete<span class="o">]</span>
+</pre></div>
+</div>
+<p>This includes all optional dependencies for maximum functionality.</p>
+</section>
+<section id="docker-installation">
+<h2>Docker Installation<a class="headerlink" href="#docker-installation" title="Link to this heading"></a></h2>
+<p>Use the official Docker image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>portfolio-lib/portfolio-lib:latest
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>portfolio-lib/portfolio-lib:latest<span class="w"> </span>python
+</pre></div>
+</div>
+<p>Or build from source:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/portfolio-lib.git
+<span class="nb">cd</span><span class="w"> </span>portfolio-lib
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-portfolio-lib<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>my-portfolio-lib<span class="w"> </span>python
+</pre></div>
+</div>
+</section>
+<section id="jupyter-integration">
+<h2>Jupyter Integration<a class="headerlink" href="#jupyter-integration" title="Link to this heading"></a></h2>
+<p>For Jupyter notebook users:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib<span class="w"> </span>jupyter<span class="w"> </span>matplotlib
+jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+<p>Or use JupyterLab:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>portfolio-lib<span class="w"> </span>jupyterlab<span class="w"> </span>matplotlib
+jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+</section>
+<section id="ide-setup">
+<h2>IDE Setup<a class="headerlink" href="#ide-setup" title="Link to this heading"></a></h2>
+<p><strong>VS Code</strong></p>
+<ol class="arabic simple">
+<li><p>Install Python extension</p></li>
+<li><p>Select correct Python interpreter (Ctrl+Shift+P → “Python: Select Interpreter”)</p></li>
+<li><p>Install IntelliSense: the extension will auto-detect portfolio-lib</p></li>
+</ol>
+<p><strong>PyCharm</strong></p>
+<ol class="arabic simple">
+<li><p>Open project settings</p></li>
+<li><p>Configure Python interpreter to your virtual environment</p></li>
+<li><p>Portfolio-lib will be available for auto-completion</p></li>
+</ol>
+<p><strong>Spyder</strong></p>
+<ol class="arabic simple">
+<li><p>Install in same environment as portfolio-lib</p></li>
+<li><p>Restart Spyder after installation</p></li>
+</ol>
+</section>
+<section id="update-and-uninstall">
+<h2>Update and Uninstall<a class="headerlink" href="#update-and-uninstall" title="Link to this heading"></a></h2>
+<p><strong>Update to latest version:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>Check current version:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>show<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>Uninstall:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation:</p>
+<ol class="arabic simple">
+<li><p>Read the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide</p></li>
+<li><p>Explore <a class="reference internal" href="examples.html"><span class="doc">portfolio_lib Examples</span></a> for practical use cases</p></li>
+<li><p>Check <a class="reference internal" href="api_reference.html"><span class="doc">API Reference</span></a> for detailed function documentation</p></li>
+</ol>
+</section>
+<section id="need-help">
+<h2>Need Help?<a class="headerlink" href="#need-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>GitHub Issues</strong>: Report bugs or request features</p></li>
+<li><p><strong>Documentation</strong>: Complete API reference and examples</p></li>
+<li><p><strong>Community</strong>: Join our Discord/Slack for discussions</p></li>
+</ul>
+</section>
+<section id="system-specific-notes">
+<h2>System-Specific Notes<a class="headerlink" href="#system-specific-notes" title="Link to this heading"></a></h2>
+<p><strong>macOS</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If using Homebrew Python</span>
+brew<span class="w"> </span>install<span class="w"> </span>python
+pip3<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>Ubuntu/Debian</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv
+pip3<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>CentOS/RHEL</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>python3-pip
+pip3<span class="w"> </span>install<span class="w"> </span>portfolio-lib
+</pre></div>
+</div>
+<p><strong>Windows</strong></p>
+<ul class="simple">
+<li><p>Install Python from python.org</p></li>
+<li><p>Use Command Prompt or PowerShell</p></li>
+<li><p>Consider using Anaconda distribution for easier dependency management</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="portfolio-lib documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Rahul Ashok, Pritham Devaprasad, Siddarth S, Anish R.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

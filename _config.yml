@@ -1,0 +1,39 @@
+# GitHub Pages deployment settings
+# Place this file in the root directory for GitHub Pages configuration
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore
+  - portfolio-lib-package/
+  - docs/source/
+  - docs/Makefile
+  - "*.py"
+  - "*.pyc"
+  - "*.txt"
+
+# Include files
+include:
+  - docs/build/html/
+
+# Site settings
+title: Portfolio-lib Documentation
+description: Comprehensive Python library for quantitative finance and portfolio analysis
+url: "https://your-username.github.io"
+baseurl: "/Portfolio-lib"
+
+# GitHub repository
+repository: your-username/Portfolio-lib
+
+# Theme (will be overridden by Sphinx-generated HTML)
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap

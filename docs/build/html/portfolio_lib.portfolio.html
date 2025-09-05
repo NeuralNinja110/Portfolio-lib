@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>portfolio_lib.portfolio module &mdash; portfolio-lib v1.0.1 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=97502c36" />
+
+  
+    <link rel="canonical" href="https://your-username.github.io/Portfolio-lib/portfolio_lib.portfolio.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c4955cf7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting Guide" href="troubleshooting.html" />
+    <link rel="prev" title="BaseIndicator, SMA, EMA, and RSI Classes" href="portfolio_lib.core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            portfolio-lib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">portfolio_lib Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visual_guide.html">Visual Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api_reference.html#core-modules">Core Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html">Money Flow Index (MFI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#ichimoku-cloud">Ichimoku Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#parabolic-sar">Parabolic SAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#commodity-channel-index-cci">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#on-balance-volume-obv">On Balance Volume (OBV)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id1">Money Flow Index (MFI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#average-true-range-atr">Average True Range (ATR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#average-directional-index-adx">Average Directional Index (ADX)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id2">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#momentum-indicator">Momentum Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#rate-of-change-roc">Rate of Change (ROC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id3">Average True Range (ATR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#stochastic-oscillator">Stochastic Oscillator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#williams-r">Williams %R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id4">Momentum Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#macd-moving-average-convergence-divergence">MACD (Moving Average Convergence Divergence)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#bollinger-bands">Bollinger Bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id5">Stochastic Oscillator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#exponential-moving-average-ema">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#relative-strength-index-rsi">Relative Strength Index (RSI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id6">MACD (Moving Average Convergence Divergence)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#simple-moving-average-sma">Simple Moving Average (SMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id7">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html">BaseIndicator, SMA, EMA, and RSI Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#portfolio-class">Portfolio Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#datafeed-and-yfinancedatafeed-classes">DataFeed and YFinanceDataFeed Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#trade-class">Trade Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#id1">Portfolio Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#position-class">Position Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#id2">Trade Class</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">portfolio_lib.portfolio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics"><code class="docutils literal notranslate"><span class="pre">AdvancedPortfolioAnalytics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#portfolio_lib.portfolio.PositionSizing"><code class="docutils literal notranslate"><span class="pre">PositionSizing</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#portfolio_lib.portfolio.PerformanceAttribution"><code class="docutils literal notranslate"><span class="pre">PerformanceAttribution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#portfolio_lib.portfolio.RiskMetrics"><code class="docutils literal notranslate"><span class="pre">RiskMetrics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#portfolio-classes-examples-and-visuals">Portfolio Classes, Examples, and Visuals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#module-overview">Module Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#function-categories">Function Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#quick-reference">Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#data-types-and-formats">Data Types and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#version-compatibility">Version Compatibility</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; Support:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">portfolio-lib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">portfolio_lib.portfolio module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/Portfolio-lib/blob/main/docs/source/portfolio_lib.portfolio.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="portfolio-lib-portfolio-module">
+<h1>portfolio_lib.portfolio module<a class="headerlink" href="#portfolio-lib-portfolio-module" title="Link to this heading"></a></h1>
+<p id="module-portfolio_lib.portfolio">Portfolio Management and Risk Analytics Module
+Comprehensive portfolio management with advanced risk metrics</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portfolio_lib.portfolio.</span></span><span class="sig-name descname"><span class="pre">AdvancedPortfolioAnalytics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Advanced portfolio analytics and risk management</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_var">
+<span class="sig-name descname"><span class="pre">calculate_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_var" title="Link to this definition"></a></dt>
+<dd><p>Calculate Value at Risk</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_cvar">
+<span class="sig-name descname"><span class="pre">calculate_cvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_cvar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_cvar" title="Link to this definition"></a></dt>
+<dd><p>Calculate Conditional Value at Risk (Expected Shortfall)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_maximum_drawdown">
+<span class="sig-name descname"><span class="pre">calculate_maximum_drawdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_maximum_drawdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_maximum_drawdown" title="Link to this definition"></a></dt>
+<dd><p>Calculate maximum drawdown and duration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_ulcer_index">
+<span class="sig-name descname"><span class="pre">calculate_ulcer_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_ulcer_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_ulcer_index" title="Link to this definition"></a></dt>
+<dd><p>Calculate Ulcer Index - measure of downside risk</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_burke_ratio">
+<span class="sig-name descname"><span class="pre">calculate_burke_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_burke_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_burke_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Burke Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_sterling_ratio">
+<span class="sig-name descname"><span class="pre">calculate_sterling_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_sterling_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_sterling_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Sterling Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_tracking_error">
+<span class="sig-name descname"><span class="pre">calculate_tracking_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_tracking_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_tracking_error" title="Link to this definition"></a></dt>
+<dd><p>Calculate tracking error vs benchmark</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_information_ratio">
+<span class="sig-name descname"><span class="pre">calculate_information_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_information_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_information_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Information Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_beta">
+<span class="sig-name descname"><span class="pre">calculate_beta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_beta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_beta" title="Link to this definition"></a></dt>
+<dd><p>Calculate Beta vs benchmark</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_alpha">
+<span class="sig-name descname"><span class="pre">calculate_alpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">risk_free_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_alpha" title="Link to this definition"></a></dt>
+<dd><p>Calculate Alpha vs benchmark</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_treynor_ratio">
+<span class="sig-name descname"><span class="pre">calculate_treynor_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">risk_free_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_treynor_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_treynor_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Treynor Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_modigliani_ratio">
+<span class="sig-name descname"><span class="pre">calculate_modigliani_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">risk_free_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_modigliani_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_modigliani_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Modigliani-Modigliani Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_omega_ratio">
+<span class="sig-name descname"><span class="pre">calculate_omega_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_omega_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_omega_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Omega Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_kappa_ratio">
+<span class="sig-name descname"><span class="pre">calculate_kappa_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_kappa_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_kappa_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Kappa Ratio (generalized downside risk measure)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_gain_pain_ratio">
+<span class="sig-name descname"><span class="pre">calculate_gain_pain_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_gain_pain_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_gain_pain_ratio" title="Link to this definition"></a></dt>
+<dd><p>Calculate Gain-to-Pain Ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_comprehensive_risk_metrics">
+<span class="sig-name descname"><span class="pre">calculate_comprehensive_risk_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portfolio_lib.portfolio.RiskMetrics" title="portfolio_lib.portfolio.RiskMetrics"><span class="pre">RiskMetrics</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#AdvancedPortfolioAnalytics.calculate_comprehensive_risk_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.AdvancedPortfolioAnalytics.calculate_comprehensive_risk_metrics" title="Link to this definition"></a></dt>
+<dd><p>Calculate comprehensive risk metrics</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PositionSizing">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portfolio_lib.portfolio.</span></span><span class="sig-name descname"><span class="pre">PositionSizing</span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PositionSizing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PositionSizing" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Position sizing and risk management</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PositionSizing.kelly_criterion">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kelly_criterion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_win</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_loss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PositionSizing.kelly_criterion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PositionSizing.kelly_criterion" title="Link to this definition"></a></dt>
+<dd><p>Calculate Kelly Criterion optimal position size</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PositionSizing.fixed_fractional">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fixed_fractional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_equity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">risk_per_trade</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_loss_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PositionSizing.fixed_fractional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PositionSizing.fixed_fractional" title="Link to this definition"></a></dt>
+<dd><p>Calculate position size using fixed fractional method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PositionSizing.volatility_position_sizing">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volatility_position_sizing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_equity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_volatility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_volatility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">correlation_adjustment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PositionSizing.volatility_position_sizing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PositionSizing.volatility_position_sizing" title="Link to this definition"></a></dt>
+<dd><p>Calculate position size based on volatility targeting</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PositionSizing.risk_parity_weights">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">risk_parity_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">covariance_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PositionSizing.risk_parity_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PositionSizing.risk_parity_weights" title="Link to this definition"></a></dt>
+<dd><p>Calculate risk parity portfolio weights</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PerformanceAttribution">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portfolio_lib.portfolio.</span></span><span class="sig-name descname"><span class="pre">PerformanceAttribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PerformanceAttribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PerformanceAttribution" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Performance attribution analysis</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PerformanceAttribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PerformanceAttribution.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PerformanceAttribution.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PerformanceAttribution.brinson_attribution">
+<span class="sig-name descname"><span class="pre">brinson_attribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PerformanceAttribution.brinson_attribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PerformanceAttribution.brinson_attribution" title="Link to this definition"></a></dt>
+<dd><p>Brinson-Fachler performance attribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.PerformanceAttribution.calculate_sector_attribution">
+<span class="sig-name descname"><span class="pre">calculate_sector_attribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector_mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#PerformanceAttribution.calculate_sector_attribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.PerformanceAttribution.calculate_sector_attribution" title="Link to this definition"></a></dt>
+<dd><p>Calculate performance attribution by sector</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portfolio_lib.portfolio.</span></span><span class="sig-name descname"><span class="pre">RiskMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_95</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_99</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_95</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_99</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">skewness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kurtosis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_drawdown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">calmar_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sterling_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">burke_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/portfolio_lib/portfolio.html#RiskMetrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Risk metrics container</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.var_95">
+<span class="sig-name descname"><span class="pre">var_95</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.var_95" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.var_99">
+<span class="sig-name descname"><span class="pre">var_99</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.var_99" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.cvar_95">
+<span class="sig-name descname"><span class="pre">cvar_95</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.cvar_95" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.cvar_99">
+<span class="sig-name descname"><span class="pre">cvar_99</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.cvar_99" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.skewness">
+<span class="sig-name descname"><span class="pre">skewness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.skewness" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.kurtosis">
+<span class="sig-name descname"><span class="pre">kurtosis</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.kurtosis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.maximum_drawdown">
+<span class="sig-name descname"><span class="pre">maximum_drawdown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.maximum_drawdown" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.calmar_ratio">
+<span class="sig-name descname"><span class="pre">calmar_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.calmar_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.sterling_ratio">
+<span class="sig-name descname"><span class="pre">sterling_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.sterling_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.burke_ratio">
+<span class="sig-name descname"><span class="pre">burke_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.burke_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portfolio_lib.portfolio.RiskMetrics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_95</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_99</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_95</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_99</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">skewness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kurtosis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_drawdown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">calmar_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sterling_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">burke_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#portfolio_lib.portfolio.RiskMetrics.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<section id="portfolio-classes-examples-and-visuals">
+<span id="portfolio-examples"></span><h2>Portfolio Classes, Examples, and Visuals<a class="headerlink" href="#portfolio-classes-examples-and-visuals" title="Link to this heading"></a></h2>
+<section id="riskmetrics-class">
+<h3>RiskMetrics Class<a class="headerlink" href="#riskmetrics-class" title="Link to this heading"></a></h3>
+<p>A dataclass container for comprehensive risk metrics.</p>
+<p><strong>Attributes:</strong></p>
+<ul class="simple">
+<li><p>var_95: float — Value at Risk (95%)</p></li>
+<li><p>var_99: float — Value at Risk (99%)</p></li>
+<li><p>cvar_95: float — Conditional VaR (95%)</p></li>
+<li><p>cvar_99: float — Conditional VaR (99%)</p></li>
+<li><p>skewness: float — Return distribution skewness</p></li>
+<li><p>kurtosis: float — Return distribution kurtosis</p></li>
+<li><p>maximum_drawdown: float — Maximum portfolio drawdown</p></li>
+<li><p>calmar_ratio: float — Annual return / max drawdown</p></li>
+<li><p>sterling_ratio: float — Risk-adjusted return metric</p></li>
+<li><p>burke_ratio: float — Return / Ulcer Index</p></li>
+</ul>
+<p><strong>Tested Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">RiskMetrics</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">RiskMetrics</span><span class="p">(</span>
+    <span class="n">var_95</span><span class="o">=-</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">var_99</span><span class="o">=-</span><span class="mf">0.035</span><span class="p">,</span> <span class="n">cvar_95</span><span class="o">=-</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">cvar_99</span><span class="o">=-</span><span class="mf">0.04</span><span class="p">,</span>
+    <span class="n">skewness</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kurtosis</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">maximum_drawdown</span><span class="o">=-</span><span class="mf">0.15</span><span class="p">,</span>
+    <span class="n">calmar_ratio</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">sterling_ratio</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">burke_ratio</span><span class="o">=</span><span class="mf">2.1</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VaR 95%: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">var_95</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max Drawdown: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">maximum_drawdown</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>VaR 95%: -2.00%
+Max Drawdown: -15.00%
+</pre></div>
+</div>
+</section>
+<section id="advancedportfolioanalytics-class">
+<h3>AdvancedPortfolioAnalytics Class<a class="headerlink" href="#advancedportfolioanalytics-class" title="Link to this heading"></a></h3>
+<p>Comprehensive portfolio analytics and risk management.</p>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p>calculate_var(confidence_level): Value at Risk calculation</p></li>
+<li><p>calculate_cvar(confidence_level): Conditional VaR calculation</p></li>
+<li><p>calculate_maximum_drawdown(equity_curve): Maximum drawdown analysis</p></li>
+<li><p>calculate_ulcer_index(equity_curve): Downside risk measure</p></li>
+<li><p>calculate_tracking_error(): Volatility vs benchmark</p></li>
+<li><p>calculate_information_ratio(): Risk-adjusted excess return</p></li>
+<li><p>calculate_beta(): Systematic risk measure</p></li>
+<li><p>calculate_alpha(risk_free_rate): Risk-adjusted excess return</p></li>
+<li><p>calculate_comprehensive_risk_metrics(equity_curve): All metrics</p></li>
+</ul>
+<p><strong>Tested Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdvancedPortfolioAnalytics</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">252</span><span class="p">)</span>  <span class="c1"># Daily returns</span>
+<span class="n">benchmark</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mi">252</span><span class="p">)</span>
+<span class="n">analytics</span> <span class="o">=</span> <span class="n">AdvancedPortfolioAnalytics</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">)</span>
+<span class="n">equity_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">returns</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">analytics</span><span class="o">.</span><span class="n">calculate_comprehensive_risk_metrics</span><span class="p">(</span><span class="n">equity_curve</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VaR 95%: </span><span class="si">{</span><span class="n">analytics</span><span class="o">.</span><span class="n">calculate_var</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tracking Error: </span><span class="si">{</span><span class="n">analytics</span><span class="o">.</span><span class="n">calculate_tracking_error</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Information Ratio: </span><span class="si">{</span><span class="n">analytics</span><span class="o">.</span><span class="n">calculate_information_ratio</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>VaR 95%: -0.0316
+Tracking Error: 0.0793
+Information Ratio: 0.9525
+</pre></div>
+</div>
+<p><strong>Visualization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdvancedPortfolioAnalytics</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">252</span><span class="p">)</span>
+<span class="n">equity_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">returns</span><span class="p">)</span>
+<span class="n">analytics</span> <span class="o">=</span> <span class="n">AdvancedPortfolioAnalytics</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">max_dd</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">analytics</span><span class="o">.</span><span class="n">calculate_maximum_drawdown</span><span class="p">(</span><span class="n">equity_curve</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">equity_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Equity Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Portfolio Equity Curve (Max DD: </span><span class="si">{</span><span class="n">max_dd</span><span class="si">:</span><span class="s1">.2%</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/portfolio_lib-portfolio-1.png" class="plot-directive" src="_images/portfolio_lib-portfolio-1.png" />
+</figure>
+</section>
+<section id="positionsizing-class">
+<h3>PositionSizing Class<a class="headerlink" href="#positionsizing-class" title="Link to this heading"></a></h3>
+<p>Static methods for position sizing and risk management.</p>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p>kelly_criterion(win_rate, avg_win, avg_loss): Optimal position size</p></li>
+<li><p>fixed_fractional(account_equity, risk_per_trade, stop_loss_pct): Fixed risk sizing</p></li>
+<li><p>volatility_position_sizing(account_equity, target_vol, asset_vol): Vol targeting</p></li>
+<li><p>risk_parity_weights(covariance_matrix): Equal risk contribution weights</p></li>
+</ul>
+<p><strong>Kelly Criterion Formula:</strong></p>
+<div class="math notranslate nohighlight">
+\[f^* = \frac{bp - q}{b}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(f^*\)</span> is the Kelly fraction, <span class="math notranslate nohighlight">\(b\)</span> is the win/loss ratio, <span class="math notranslate nohighlight">\(p\)</span> is win probability, <span class="math notranslate nohighlight">\(q\)</span> is loss probability.</p>
+<p><strong>Tested Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">PositionSizing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># Kelly Criterion</span>
+<span class="n">kelly_size</span> <span class="o">=</span> <span class="n">PositionSizing</span><span class="o">.</span><span class="n">kelly_criterion</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kelly Fraction: </span><span class="si">{</span><span class="n">kelly_size</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Fixed Fractional</span>
+<span class="n">position_size</span> <span class="o">=</span> <span class="n">PositionSizing</span><span class="o">.</span><span class="n">fixed_fractional</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position Size: $</span><span class="si">{</span><span class="n">position_size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Risk Parity</span>
+<span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">]])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">PositionSizing</span><span class="o">.</span><span class="n">risk_parity_weights</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Risk Parity Weights: </span><span class="si">{</span><span class="n">weights</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Kelly Fraction: 0.2000
+Position Size: $4000.00
+Risk Parity Weights: [0.6 0.4]
+</pre></div>
+</div>
+</section>
+<section id="performanceattribution-class">
+<h3>PerformanceAttribution Class<a class="headerlink" href="#performanceattribution-class" title="Link to this heading"></a></h3>
+<p>Performance attribution analysis for portfolio management.</p>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p>brinson_attribution(benchmark_weights): Brinson-Fachler attribution</p></li>
+<li><p>calculate_sector_attribution(sector_mapping): Sector-based attribution</p></li>
+</ul>
+<p><strong>Brinson Attribution Formula:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{Allocation Effect} = (w_p - w_b) \times r_b\]</div>
+<div class="math notranslate nohighlight">
+\[\text{Selection Effect} = w_b \times (r_p - r_b)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{Interaction Effect} = (w_p - w_b) \times (r_p - r_b)\]</div>
+<p><strong>Tested Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">PerformanceAttribution</span>
+<span class="n">portfolio_returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">])</span>
+<span class="n">benchmark_returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">asset_returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">])</span>
+<span class="n">attribution</span> <span class="o">=</span> <span class="n">PerformanceAttribution</span><span class="p">(</span><span class="n">portfolio_returns</span><span class="p">,</span> <span class="n">benchmark_returns</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">asset_returns</span><span class="p">)</span>
+<span class="n">benchmark_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">attribution</span><span class="o">.</span><span class="n">brinson_attribution</span><span class="p">(</span><span class="n">benchmark_weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Allocation Effect: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;allocation&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Allocation Effect: [-0.006  0.     0.002]
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="portfolio_lib.core.html" class="btn btn-neutral float-left" title="BaseIndicator, SMA, EMA, and RSI Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Rahul Ashok, Pritham Devaprasad, Siddarth S, Anish R.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

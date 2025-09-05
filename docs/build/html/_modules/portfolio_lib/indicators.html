@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>portfolio_lib.indicators &mdash; portfolio-lib v1.0.1 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=97502c36" />
+
+  
+    <link rel="canonical" href="https://your-username.github.io/Portfolio-lib/_modules/portfolio_lib/indicators.html" />
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c4955cf7"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            portfolio-lib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">portfolio_lib Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visual_guide.html">Visual Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; Support:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">portfolio-lib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">portfolio_lib.indicators</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for portfolio_lib.indicators</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Technical Analysis Indicators Library</span>
+<span class="sd">Comprehensive collection of technical indicators for quantitative analysis</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<div class="viewcode-block" id="TechnicalIndicators">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TechnicalIndicators</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of technical analysis indicators&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="TechnicalIndicators.sma">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.sma">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sma</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Simple Moving Average&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.ema">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.ema">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ema</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exponential Moving Average&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.rsi">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.rsi">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rsi</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Relative Strength Index&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">deltas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deltas</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deltas</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">deltas</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">avg_gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">avg_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        
+        <span class="c1"># Initial averages</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gains</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">period</span><span class="p">:</span>
+            <span class="n">avg_gains</span><span class="p">[</span><span class="n">period</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gains</span><span class="p">[:</span><span class="n">period</span><span class="p">])</span>
+            <span class="n">avg_losses</span><span class="p">[</span><span class="n">period</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">losses</span><span class="p">[:</span><span class="n">period</span><span class="p">])</span>
+            
+            <span class="c1"># Exponential moving averages</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+                <span class="n">avg_gains</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_gains</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">gains</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">period</span>
+                <span class="n">avg_losses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_losses</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">losses</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">period</span>
+        
+        <span class="n">rs</span> <span class="o">=</span> <span class="n">avg_gains</span> <span class="o">/</span> <span class="n">avg_losses</span>
+        <span class="n">rsi</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rs</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rsi</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.macd">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.macd">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">macd</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> 
+             <span class="n">fast_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">slow_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">26</span><span class="p">,</span> <span class="n">signal_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;MACD (Moving Average Convergence Divergence)&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">ema_fast</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fast_period</span><span class="p">)</span>
+        <span class="n">ema_slow</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">slow_period</span><span class="p">)</span>
+        
+        <span class="n">macd_line</span> <span class="o">=</span> <span class="n">ema_fast</span> <span class="o">-</span> <span class="n">ema_slow</span>
+        <span class="n">signal_line</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="n">macd_line</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">macd_line</span><span class="p">)],</span> <span class="n">signal_period</span><span class="p">)</span>
+        
+        <span class="c1"># Align signal line with macd line</span>
+        <span class="n">signal_aligned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">macd_line</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">valid_start</span> <span class="o">=</span> <span class="n">slow_period</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">signal_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">valid_start</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal_line</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal_aligned</span><span class="p">))</span>
+        <span class="n">actual_signal_length</span> <span class="o">=</span> <span class="n">signal_end</span> <span class="o">-</span> <span class="n">valid_start</span>
+        <span class="n">signal_aligned</span><span class="p">[</span><span class="n">valid_start</span><span class="p">:</span><span class="n">signal_end</span><span class="p">]</span> <span class="o">=</span> <span class="n">signal_line</span><span class="p">[:</span><span class="n">actual_signal_length</span><span class="p">]</span>
+        
+        <span class="n">histogram</span> <span class="o">=</span> <span class="n">macd_line</span> <span class="o">-</span> <span class="n">signal_aligned</span>
+        
+        <span class="k">return</span> <span class="n">macd_line</span><span class="p">,</span> <span class="n">signal_aligned</span><span class="p">,</span> <span class="n">histogram</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.bollinger_bands">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.bollinger_bands">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bollinger_bands</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> 
+                       <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bollinger Bands&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sma</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        
+        <span class="n">rolling_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">rolling_std</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">upper_band</span> <span class="o">=</span> <span class="n">sma</span> <span class="o">+</span> <span class="p">(</span><span class="n">rolling_std</span> <span class="o">*</span> <span class="n">std_dev</span><span class="p">)</span>
+        <span class="n">lower_band</span> <span class="o">=</span> <span class="n">sma</span> <span class="o">-</span> <span class="p">(</span><span class="n">rolling_std</span> <span class="o">*</span> <span class="n">std_dev</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">upper_band</span><span class="p">,</span> <span class="n">sma</span><span class="p">,</span> <span class="n">lower_band</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.stochastic_oscillator">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.stochastic_oscillator">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stochastic_oscillator</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+                            <span class="n">k_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="n">d_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stochastic Oscillator&quot;&quot;&quot;</span>
+        <span class="n">highest_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">lowest_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k_period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)):</span>
+            <span class="n">highest_high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">high</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k_period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">lowest_low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k_period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">k_percent</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">((</span><span class="n">close</span> <span class="o">-</span> <span class="n">lowest_low</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">highest_high</span> <span class="o">-</span> <span class="n">lowest_low</span><span class="p">))</span>
+        <span class="n">d_percent</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">k_percent</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">k_percent</span><span class="p">)],</span> <span class="n">d_period</span><span class="p">)</span>
+        
+        <span class="c1"># Align D% with K%</span>
+        <span class="n">d_aligned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k_percent</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">valid_start</span> <span class="o">=</span> <span class="n">k_period</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">d_aligned</span><span class="p">[</span><span class="n">valid_start</span><span class="p">:</span><span class="n">valid_start</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">d_percent</span><span class="p">)]</span> <span class="o">=</span> <span class="n">d_percent</span>
+        
+        <span class="k">return</span> <span class="n">k_percent</span><span class="p">,</span> <span class="n">d_aligned</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.williams_r">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.williams_r">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">williams_r</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Williams %R&quot;&quot;&quot;</span>
+        <span class="n">highest_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">lowest_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)):</span>
+            <span class="n">highest_high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">high</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">lowest_low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">williams_r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">((</span><span class="n">highest_high</span> <span class="o">-</span> <span class="n">close</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">highest_high</span> <span class="o">-</span> <span class="n">lowest_low</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">williams_r</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.momentum">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.momentum">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">momentum</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Momentum Indicator&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">momentum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">momentum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">momentum</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.roc">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.roc">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">roc</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rate of Change&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">roc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">roc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span><span class="p">])</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+        
+        <span class="k">return</span> <span class="n">roc</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.atr">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.atr">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">atr</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Average True Range&quot;&quot;&quot;</span>
+        <span class="n">tr1</span> <span class="o">=</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span>
+        <span class="n">tr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">close</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">tr3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">low</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">close</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        
+        <span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">tr1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">tr2</span><span class="p">,</span> <span class="n">tr3</span><span class="p">))</span>
+        <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tr1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># First value</span>
+        
+        <span class="n">atr</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">atr</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.adx">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.adx">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">adx</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Average Directional Index&quot;&quot;&quot;</span>
+        <span class="n">tr</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">atr</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">close</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">plus_dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">minus_dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">)):</span>
+            <span class="n">high_diff</span> <span class="o">=</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">low_diff</span> <span class="o">=</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">high_diff</span> <span class="o">&gt;</span> <span class="n">low_diff</span> <span class="ow">and</span> <span class="n">high_diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">plus_dm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_diff</span>
+            <span class="k">if</span> <span class="n">low_diff</span> <span class="o">&gt;</span> <span class="n">high_diff</span> <span class="ow">and</span> <span class="n">low_diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">minus_dm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">low_diff</span>
+        
+        <span class="n">plus_di</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">plus_dm</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span> <span class="o">/</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        <span class="n">minus_di</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">minus_dm</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span> <span class="o">/</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        
+        <span class="n">dx</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">plus_di</span> <span class="o">-</span> <span class="n">minus_di</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">plus_di</span> <span class="o">+</span> <span class="n">minus_di</span><span class="p">)</span>
+        <span class="n">adx</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">adx</span><span class="p">,</span> <span class="n">plus_di</span><span class="p">,</span> <span class="n">minus_di</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.cci">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.cci">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cci</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Commodity Channel Index&quot;&quot;&quot;</span>
+        <span class="n">typical_price</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span> <span class="o">+</span> <span class="n">close</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+        <span class="n">sma_tp</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">typical_price</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        
+        <span class="n">mean_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">typical_price</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">typical_price</span><span class="p">)):</span>
+            <span class="n">mean_deviation</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">typical_price</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sma_tp</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        
+        <span class="n">cci</span> <span class="o">=</span> <span class="p">(</span><span class="n">typical_price</span> <span class="o">-</span> <span class="n">sma_tp</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.015</span> <span class="o">*</span> <span class="n">mean_deviation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cci</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.obv">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.obv">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obv</span><span class="p">(</span><span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;On Balance Volume&quot;&quot;&quot;</span>
+        <span class="n">obv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">))</span>
+        <span class="n">obv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">close</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">close</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">volume</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">close</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">close</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">volume</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">obv</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">obv</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.mfi">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.mfi">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mfi</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Money Flow Index&quot;&quot;&quot;</span>
+        <span class="n">typical_price</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span> <span class="o">+</span> <span class="n">close</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+        <span class="n">money_flow</span> <span class="o">=</span> <span class="n">typical_price</span> <span class="o">*</span> <span class="n">volume</span>
+        
+        <span class="n">positive_flow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">))</span>
+        <span class="n">negative_flow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">typical_price</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">typical_price</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">positive_flow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">money_flow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">typical_price</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">typical_price</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">negative_flow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">money_flow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        
+        <span class="n">mfi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)):</span>
+            <span class="n">pos_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">positive_flow</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">neg_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">negative_flow</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            
+            <span class="k">if</span> <span class="n">neg_sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">money_ratio</span> <span class="o">=</span> <span class="n">pos_sum</span> <span class="o">/</span> <span class="n">neg_sum</span>
+                <span class="n">mfi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">money_ratio</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">mfi</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.ichimoku">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.ichimoku">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ichimoku</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                <span class="n">tenkan_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">kijun_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">26</span><span class="p">,</span> <span class="n">senkou_b_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">52</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ichimoku Cloud&quot;&quot;&quot;</span>
+        
+        <span class="k">def</span><span class="w"> </span><span class="nf">calculate_line</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">period</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">)):</span>
+                <span class="n">period_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">high</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">period_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">period_high</span> <span class="o">+</span> <span class="n">period_low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="n">result</span>
+        
+        <span class="n">tenkan_sen</span> <span class="o">=</span> <span class="n">calculate_line</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">tenkan_period</span><span class="p">)</span>
+        <span class="n">kijun_sen</span> <span class="o">=</span> <span class="n">calculate_line</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">kijun_period</span><span class="p">)</span>
+        <span class="n">senkou_span_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">tenkan_sen</span> <span class="o">+</span> <span class="n">kijun_sen</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">senkou_span_b</span> <span class="o">=</span> <span class="n">calculate_line</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">senkou_b_period</span><span class="p">)</span>
+        
+        <span class="c1"># Chikou span is close shifted back 26 periods</span>
+        <span class="n">chikou_span</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">close</span><span class="p">,</span> <span class="n">kijun_period</span><span class="p">)</span>
+        <span class="n">chikou_span</span><span class="p">[:</span><span class="n">kijun_period</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;tenkan_sen&#39;</span><span class="p">:</span> <span class="n">tenkan_sen</span><span class="p">,</span>
+            <span class="s1">&#39;kijun_sen&#39;</span><span class="p">:</span> <span class="n">kijun_sen</span><span class="p">,</span>
+            <span class="s1">&#39;senkou_span_a&#39;</span><span class="p">:</span> <span class="n">senkou_span_a</span><span class="p">,</span>
+            <span class="s1">&#39;senkou_span_b&#39;</span><span class="p">:</span> <span class="n">senkou_span_b</span><span class="p">,</span>
+            <span class="s1">&#39;chikou_span&#39;</span><span class="p">:</span> <span class="n">chikou_span</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="TechnicalIndicators.parabolic_sar">
+<a class="viewcode-back" href="../../portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.parabolic_sar">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parabolic_sar</span><span class="p">(</span><span class="n">high</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">af_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">af_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parabolic SAR&quot;&quot;&quot;</span>
+        <span class="n">sar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">))</span>  <span class="c1"># 1 for uptrend, -1 for downtrend</span>
+        <span class="n">af</span> <span class="o">=</span> <span class="n">af_start</span>
+        <span class="n">ep</span> <span class="o">=</span> <span class="n">high</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">high</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">low</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">sar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">low</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">trend</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Uptrend</span>
+                <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">af</span> <span class="o">*</span> <span class="p">(</span><span class="n">ep</span> <span class="o">-</span> <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                
+                <span class="k">if</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ep</span><span class="p">:</span>
+                    <span class="n">ep</span> <span class="o">=</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">af</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">af</span> <span class="o">+</span> <span class="n">af_start</span><span class="p">,</span> <span class="n">af_max</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">trend</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ep</span>
+                    <span class="n">ep</span> <span class="o">=</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">af</span> <span class="o">=</span> <span class="n">af_start</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">trend</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># Downtrend</span>
+                <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">af</span> <span class="o">*</span> <span class="p">(</span><span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ep</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ep</span><span class="p">:</span>
+                    <span class="n">ep</span> <span class="o">=</span> <span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">af</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">af</span> <span class="o">+</span> <span class="n">af_start</span><span class="p">,</span> <span class="n">af_max</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">trend</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">sar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ep</span>
+                    <span class="n">ep</span> <span class="o">=</span> <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">af</span> <span class="o">=</span> <span class="n">af_start</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">trend</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">sar</span></div>
+</div>
+
+
+<span class="c1"># Export for easy import</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TechnicalIndicators&#39;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Rahul Ashok, Pritham Devaprasad, Siddarth S, Anish R.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

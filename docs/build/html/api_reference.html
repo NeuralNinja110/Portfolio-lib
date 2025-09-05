@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; portfolio-lib v1.0.1 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=97502c36" />
+
+  
+    <link rel="canonical" href="https://your-username.github.io/Portfolio-lib/api_reference.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c4955cf7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Money Flow Index (MFI)" href="portfolio_lib.indicators.html" />
+    <link rel="prev" title="Technical Indicators Comparison" href="indicators_comparison.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            portfolio-lib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">portfolio_lib Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visual_guide.html">Visual Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core-modules">Core Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html">Money Flow Index (MFI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#ichimoku-cloud">Ichimoku Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#parabolic-sar">Parabolic SAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#commodity-channel-index-cci">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#on-balance-volume-obv">On Balance Volume (OBV)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id1">Money Flow Index (MFI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#average-true-range-atr">Average True Range (ATR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#average-directional-index-adx">Average Directional Index (ADX)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id2">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#momentum-indicator">Momentum Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#rate-of-change-roc">Rate of Change (ROC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id3">Average True Range (ATR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#stochastic-oscillator">Stochastic Oscillator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#williams-r">Williams %R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id4">Momentum Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#macd-moving-average-convergence-divergence">MACD (Moving Average Convergence Divergence)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#bollinger-bands">Bollinger Bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id5">Stochastic Oscillator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#exponential-moving-average-ema">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#relative-strength-index-rsi">Relative Strength Index (RSI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id6">MACD (Moving Average Convergence Divergence)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#simple-moving-average-sma">Simple Moving Average (SMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.indicators.html#id7">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html">BaseIndicator, SMA, EMA, and RSI Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#portfolio-class">Portfolio Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#datafeed-and-yfinancedatafeed-classes">DataFeed and YFinanceDataFeed Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#trade-class">Trade Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#id1">Portfolio Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#position-class">Position Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.core.html#id2">Trade Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portfolio_lib.portfolio.html">portfolio_lib.portfolio module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#portfolio-lib-indicators">portfolio_lib.indicators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#portfolio-lib-core">portfolio_lib.core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#portfolio-lib-portfolio">portfolio_lib.portfolio</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#function-categories">Function Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#technical-indicators">Technical Indicators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#risk-metrics">Risk Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#position-sizing">Position Sizing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-analytics">Performance Analytics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-usage-patterns">Common Usage Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-types-and-formats">Data Types and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-compatibility">Version Compatibility</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; Support:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">portfolio-lib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/Portfolio-lib/blob/main/docs/source/api_reference.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>Complete reference for all portfolio-lib modules, classes, and functions.</p>
+<section id="core-modules">
+<h2>Core Modules<a class="headerlink" href="#core-modules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html">Money Flow Index (MFI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#ichimoku-cloud">Ichimoku Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#parabolic-sar">Parabolic SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#commodity-channel-index-cci">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#on-balance-volume-obv">On Balance Volume (OBV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id1">Money Flow Index (MFI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#average-true-range-atr">Average True Range (ATR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#average-directional-index-adx">Average Directional Index (ADX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id2">Commodity Channel Index (CCI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#momentum-indicator">Momentum Indicator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#rate-of-change-roc">Rate of Change (ROC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id3">Average True Range (ATR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#stochastic-oscillator">Stochastic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#williams-r">Williams %R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id4">Momentum Indicator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#macd-moving-average-convergence-divergence">MACD (Moving Average Convergence Divergence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#bollinger-bands">Bollinger Bands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id5">Stochastic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#exponential-moving-average-ema">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#relative-strength-index-rsi">Relative Strength Index (RSI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id6">MACD (Moving Average Convergence Divergence)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.indicators.html#portfolio-lib-indicators-module">portfolio_lib.indicators module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#simple-moving-average-sma">Simple Moving Average (SMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.indicators.html#id7">Exponential Moving Average (EMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html">BaseIndicator, SMA, EMA, and RSI Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#portfolio-class">Portfolio Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#datafeed-and-yfinancedatafeed-classes">DataFeed and YFinanceDataFeed Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#trade-class">Trade Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#id1">Portfolio Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.core.html#portfolio-lib-core-module">portfolio_lib.core module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#position-class">Position Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.core.html#id2">Trade Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_lib.portfolio.html">portfolio_lib.portfolio module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.AdvancedPortfolioAnalytics"><code class="docutils literal notranslate"><span class="pre">AdvancedPortfolioAnalytics</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.PositionSizing"><code class="docutils literal notranslate"><span class="pre">PositionSizing</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.PerformanceAttribution"><code class="docutils literal notranslate"><span class="pre">PerformanceAttribution</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.RiskMetrics"><code class="docutils literal notranslate"><span class="pre">RiskMetrics</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio-classes-examples-and-visuals">Portfolio Classes, Examples, and Visuals</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-overview">
+<h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading"></a></h2>
+<section id="portfolio-lib-indicators">
+<h3>portfolio_lib.indicators<a class="headerlink" href="#portfolio-lib-indicators" title="Link to this heading"></a></h3>
+<p>Technical analysis indicators and oscillators.</p>
+<p>Key classes and functions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators" title="portfolio_lib.indicators.TechnicalIndicators"><code class="xref py py-class docutils literal notranslate"><span class="pre">TechnicalIndicators</span></code></a> - Main indicators class</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.sma" title="portfolio_lib.indicators.TechnicalIndicators.sma"><code class="xref py py-func docutils literal notranslate"><span class="pre">sma()</span></code></a> - Simple Moving Average</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.ema" title="portfolio_lib.indicators.TechnicalIndicators.ema"><code class="xref py py-func docutils literal notranslate"><span class="pre">ema()</span></code></a> - Exponential Moving Average</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.rsi" title="portfolio_lib.indicators.TechnicalIndicators.rsi"><code class="xref py py-func docutils literal notranslate"><span class="pre">rsi()</span></code></a> - Relative Strength Index</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.macd" title="portfolio_lib.indicators.TechnicalIndicators.macd"><code class="xref py py-func docutils literal notranslate"><span class="pre">macd()</span></code></a> - MACD Indicator</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.indicators.html#portfolio_lib.indicators.TechnicalIndicators.bollinger_bands" title="portfolio_lib.indicators.TechnicalIndicators.bollinger_bands"><code class="xref py py-func docutils literal notranslate"><span class="pre">bollinger_bands()</span></code></a> - Bollinger Bands</p></li>
+</ul>
+</section>
+<section id="portfolio-lib-core">
+<h3>portfolio_lib.core<a class="headerlink" href="#portfolio-lib-core" title="Link to this heading"></a></h3>
+<p>Core portfolio management classes.</p>
+<p>Key classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="portfolio_lib.core.html#portfolio_lib.core.Portfolio" title="portfolio_lib.core.Portfolio"><code class="xref py py-class docutils literal notranslate"><span class="pre">Portfolio</span></code></a> - Main portfolio container</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.core.html#portfolio_lib.core.Position" title="portfolio_lib.core.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> - Individual position tracking</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.core.html#portfolio_lib.core.Trade" title="portfolio_lib.core.Trade"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trade</span></code></a> - Trade execution and tracking</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.html#portfolio_lib.DataFeed" title="portfolio_lib.core.DataFeed"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code></a> - Market data management</p></li>
+</ul>
+</section>
+<section id="portfolio-lib-portfolio">
+<h3>portfolio_lib.portfolio<a class="headerlink" href="#portfolio-lib-portfolio" title="Link to this heading"></a></h3>
+<p>Advanced portfolio analytics and risk management.</p>
+<p>Key classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.RiskMetrics" title="portfolio_lib.portfolio.RiskMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">RiskMetrics</span></code></a> - Basic risk calculations</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.AdvancedPortfolioAnalytics" title="portfolio_lib.portfolio.AdvancedPortfolioAnalytics"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdvancedPortfolioAnalytics</span></code></a> - Advanced analytics</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.PositionSizing" title="portfolio_lib.portfolio.PositionSizing"><code class="xref py py-class docutils literal notranslate"><span class="pre">PositionSizing</span></code></a> - Position sizing algorithms</p></li>
+<li><p><a class="reference internal" href="portfolio_lib.portfolio.html#portfolio_lib.portfolio.PerformanceAttribution" title="portfolio_lib.portfolio.PerformanceAttribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerformanceAttribution</span></code></a> - Performance analysis</p></li>
+</ul>
+</section>
+</section>
+<section id="function-categories">
+<h2>Function Categories<a class="headerlink" href="#function-categories" title="Link to this heading"></a></h2>
+<section id="technical-indicators">
+<h3>Technical Indicators<a class="headerlink" href="#technical-indicators" title="Link to this heading"></a></h3>
+<p><strong>Trend Following</strong>
+- Simple Moving Average (SMA)
+- Exponential Moving Average (EMA)
+- MACD (Moving Average Convergence Divergence)</p>
+<p><strong>Momentum Oscillators</strong>
+- Relative Strength Index (RSI)
+- Stochastic Oscillator
+- Williams %R
+- Commodity Channel Index (CCI)</p>
+<p><strong>Volatility Indicators</strong>
+- Bollinger Bands
+- Average True Range (ATR)
+- Average Directional Index (ADX)</p>
+<p><strong>Volume Indicators</strong>
+- On Balance Volume (OBV)
+- Money Flow Index (MFI)</p>
+<p><strong>Specialized Indicators</strong>
+- Ichimoku Cloud
+- Parabolic SAR
+- Momentum</p>
+</section>
+<section id="risk-metrics">
+<h3>Risk Metrics<a class="headerlink" href="#risk-metrics" title="Link to this heading"></a></h3>
+<p><strong>Basic Risk Measures</strong>
+- Value at Risk (VaR)
+- Conditional Value at Risk (CVaR)
+- Maximum Drawdown
+- Volatility</p>
+<p><strong>Advanced Risk Measures</strong>
+- Sharpe Ratio
+- Sortino Ratio
+- Calmar Ratio
+- Burke Ratio
+- Ulcer Index</p>
+<p><strong>Market Risk</strong>
+- Beta (Systematic Risk)
+- Alpha (Risk-adjusted Return)
+- Tracking Error
+- Information Ratio</p>
+</section>
+<section id="position-sizing">
+<h3>Position Sizing<a class="headerlink" href="#position-sizing" title="Link to this heading"></a></h3>
+<p><strong>Risk-Based Sizing</strong>
+- Fixed Fractional
+- Kelly Criterion
+- Volatility-based Sizing</p>
+<p><strong>Portfolio Construction</strong>
+- Risk Parity
+- Equal Weight
+- Market Cap Weighted</p>
+</section>
+<section id="performance-analytics">
+<h3>Performance Analytics<a class="headerlink" href="#performance-analytics" title="Link to this heading"></a></h3>
+<p><strong>Return Analysis</strong>
+- Total Return
+- Annualized Return
+- Risk-adjusted Returns</p>
+<p><strong>Attribution Analysis</strong>
+- Sector Attribution
+- Factor Attribution
+- Security Selection vs Allocation</p>
+</section>
+</section>
+<section id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading"></a></h2>
+<section id="common-usage-patterns">
+<h3>Common Usage Patterns<a class="headerlink" href="#common-usage-patterns" title="Link to this heading"></a></h3>
+<p><strong>Calculate Technical Indicators</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.indicators</span><span class="w"> </span><span class="kn">import</span> <span class="n">TechnicalIndicators</span>
+
+<span class="c1"># Moving averages</span>
+<span class="n">sma</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">sma</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">ema</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Oscillators</span>
+<span class="n">rsi</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">rsi</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">macd_line</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">histogram</span> <span class="o">=</span> <span class="n">TechnicalIndicators</span><span class="o">.</span><span class="n">macd</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Risk Analysis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.portfolio</span><span class="w"> </span><span class="kn">import</span> <span class="n">RiskMetrics</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">RiskMetrics</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">var_95</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">var_95</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+<span class="n">max_dd</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">maximum_drawdown</span><span class="p">(</span><span class="n">equity_curve</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Portfolio Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">portfolio_lib.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Portfolio</span><span class="p">,</span> <span class="n">Position</span>
+
+<span class="n">portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="n">initial_cash</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">position</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">150.0</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+<span class="n">portfolio</span><span class="o">.</span><span class="n">add_position</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-types-and-formats">
+<h2>Data Types and Formats<a class="headerlink" href="#data-types-and-formats" title="Link to this heading"></a></h2>
+<p><strong>Input Data Formats</strong></p>
+<p>All functions accept:
+- Python lists: <code class="docutils literal notranslate"><span class="pre">[100,</span> <span class="pre">101,</span> <span class="pre">102,</span> <span class="pre">...]</span></code>
+- NumPy arrays: <code class="docutils literal notranslate"><span class="pre">np.array([100,</span> <span class="pre">101,</span> <span class="pre">102,</span> <span class="pre">...])</span></code>
+- Pandas Series: <code class="docutils literal notranslate"><span class="pre">pd.Series([100,</span> <span class="pre">101,</span> <span class="pre">102,</span> <span class="pre">...])</span></code></p>
+<p><strong>Return Types</strong></p>
+<ul class="simple">
+<li><p>Single values: <code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+<li><p>Arrays: <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code></p></li>
+<li><p>Tuples: <code class="docutils literal notranslate"><span class="pre">(upper,</span> <span class="pre">middle,</span> <span class="pre">lower)</span></code> for Bollinger Bands</p></li>
+<li><p>Objects: Custom classes for complex results</p></li>
+</ul>
+<p><strong>Date/Time Handling</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code> or <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code></p></li>
+<li><p>Support for time zones and business day calendars</p></li>
+<li><p>Automatic alignment of time series data</p></li>
+</ul>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h2>
+<p><strong>Common Exceptions</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError</span></code>: Invalid parameters or insufficient data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError</span></code>: Wrong data types passed to functions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IndexError</span></code>: Array index out of bounds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>: Division by zero in calculations</p></li>
+</ul>
+<p><strong>Best Practices</strong></p>
+<ul class="simple">
+<li><p>Always validate input data lengths</p></li>
+<li><p>Check for NaN values in results</p></li>
+<li><p>Handle insufficient data gracefully</p></li>
+<li><p>Use appropriate error handling in production code</p></li>
+</ul>
+</section>
+<section id="version-compatibility">
+<h2>Version Compatibility<a class="headerlink" href="#version-compatibility" title="Link to this heading"></a></h2>
+<p><strong>Supported Python Versions</strong>
+- Python 3.8+
+- Python 3.9+ (recommended)
+- Python 3.10+
+- Python 3.11+</p>
+<p><strong>Dependencies</strong>
+- NumPy &gt;= 1.20.0
+- Pandas &gt;= 1.3.0
+- Matplotlib &gt;= 3.4.0
+- SciPy &gt;= 1.7.0</p>
+<p><strong>Breaking Changes</strong>
+- v1.0.0: Initial stable release
+- See CHANGELOG.md for version-specific changes</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="indicators_comparison.html" class="btn btn-neutral float-left" title="Technical Indicators Comparison" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="portfolio_lib.indicators.html" class="btn btn-neutral float-right" title="Money Flow Index (MFI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Rahul Ashok, Pritham Devaprasad, Siddarth S, Anish R.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
