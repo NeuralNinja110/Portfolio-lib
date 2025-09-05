@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+portfolio_lib/__init__.py
+portfolio_lib/core.py
+portfolio_lib/indicators.py
+portfolio_lib/portfolio.py
+portfolio_lib.egg-info/PKG-INFO
+portfolio_lib.egg-info/SOURCES.txt
+portfolio_lib.egg-info/dependency_links.txt
+portfolio_lib.egg-info/not-zip-safe
+portfolio_lib.egg-info/requires.txt
+portfolio_lib.egg-info/top_level.txt

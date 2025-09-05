@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-lib"
+version = "1.0.1"
+authors = [
+    {name = "Rahul Ashok", email = "contact@portfolio-lib.com"},
+    {name = "Pritham Devaprasad", email = "contact@portfolio-lib.com"},
+    {name = "Siddarth S", email = "contact@portfolio-lib.com"},
+    {name = "Anish R", email = "contact@portfolio-lib.com"},
+]
+description = "Lightweight Python backtesting library for algorithmic trading strategies"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Developers", 
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+keywords = [
+    "backtesting", "trading", "finance", "algorithmic-trading",
+    "quantitative-finance", "portfolio", "technical-analysis",
+    "stocks", "crypto", "forex", "investment", "strategy",
+    "lightweight", "performance", "analytics", "risk-management"
+]
+dependencies = [
+    "pandas>=1.5.0",
+    "numpy>=1.21.0", 
+    "yfinance>=0.2.0",
+    "scipy>=1.9.0",
+    "matplotlib>=3.5.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+]
+docs = [
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.2.0",
+]
+jupyter = [
+    "jupyter>=1.0.0",
+    "ipywidgets>=8.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/portfolio-lib/portfolio-lib"
+Documentation = "https://portfolio-lib.readthedocs.io"
+Repository = "https://github.com/portfolio-lib/portfolio-lib"
+"Bug Reports" = "https://github.com/portfolio-lib/portfolio-lib/issues"
+
+[tool.setuptools]
+packages = ["portfolio_lib"]
+
+[tool.setuptools.package-data]
+portfolio_lib = ["*.py"]
