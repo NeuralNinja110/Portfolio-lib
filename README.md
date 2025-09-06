@@ -281,9 +281,7 @@ If you use Portfolio-lib in academic research, please cite:
 }
 ```
 
-## Contact and Support
-
-- **Primary Contact**: Rahul Ashok (abcrahul111@gmail.com)
+## Support
 - **Repository**: [GitHub](https://github.com/NeuralNinja110/Portfolio-lib)
 - **Documentation**: [Read the Docs](https://portfolio-lib.readthedocs.io/)
 - **Issues**: [GitHub Issues](https://github.com/NeuralNinja110/Portfolio-lib/issues)
