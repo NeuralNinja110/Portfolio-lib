@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "portfolio-lib"
-version = "1.0.1"
+version = "1.0.2"
 authors = [
     {name = "Rahul Ashok", email = "contact@portfolio-lib.com"},
     {name = "Pritham Devaprasad", email = "contact@portfolio-lib.com"},
@@ -63,10 +63,10 @@ jupyter = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/portfolio-lib/portfolio-lib"
-Documentation = "https://portfolio-lib.readthedocs.io"
-Repository = "https://github.com/portfolio-lib/portfolio-lib"
-"Bug Reports" = "https://github.com/portfolio-lib/portfolio-lib/issues"
+Homepage = "https://porttfolio.com/"
+Documentation = "https://neuralninja110.github.io/Portfolio-lib/"
+Repository = "https://github.com/neuralninja110/portfolio-lib"
+"Bug Reports" = "https://github.com/neuralninja110/portfolio-lib/issues"
 
 [tool.setuptools]
 packages = ["portfolio_lib"]

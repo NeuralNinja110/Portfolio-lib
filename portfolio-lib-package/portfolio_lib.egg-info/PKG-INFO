@@ -1,15 +1,15 @@
 Metadata-Version: 2.4
 Name: portfolio-lib
-Version: 1.0.1
+Version: 1.0.2
 Summary: Lightweight Python backtesting library for algorithmic trading strategies
-Home-page: https://github.com/portfolio-lib/portfolio-lib
+Home-page: https://porttfolio.com/
 Author: Rahul Ashok, Pritham Devaprasad, Siddarth S, and Anish R
 Author-email: Rahul Ashok <contact@portfolio-lib.com>, Pritham Devaprasad <contact@portfolio-lib.com>, Siddarth S <contact@portfolio-lib.com>, Anish R <contact@portfolio-lib.com>
 License: MIT
-Project-URL: Homepage, https://github.com/portfolio-lib/portfolio-lib
-Project-URL: Documentation, https://portfolio-lib.readthedocs.io
-Project-URL: Repository, https://github.com/portfolio-lib/portfolio-lib
-Project-URL: Bug Reports, https://github.com/portfolio-lib/portfolio-lib/issues
+Project-URL: Homepage, https://porttfolio.com/
+Project-URL: Documentation, https://neuralninja110.github.io/Portfolio-lib/
+Project-URL: Repository, https://github.com/neuralninja110/portfolio-lib
+Project-URL: Bug Reports, https://github.com/neuralninja110/portfolio-lib/issues
 Keywords: backtesting,trading,finance,algorithmic-trading,quantitative-finance,portfolio,technical-analysis,stocks,crypto,forex,investment,strategy,lightweight,performance,analytics,risk-management
 Classifier: Development Status :: 5 - Production/Stable
 Classifier: Intended Audience :: Financial and Insurance Industry
@@ -26,7 +26,6 @@ Classifier: Programming Language :: Python :: 3.12
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-License-File: LICENSE
 Requires-Dist: pandas>=1.5.0
 Requires-Dist: numpy>=1.21.0
 Requires-Dist: yfinance>=0.2.0
@@ -47,7 +46,6 @@ Requires-Dist: jupyter>=1.0.0; extra == "jupyter"
 Requires-Dist: ipywidgets>=8.0.0; extra == "jupyter"
 Dynamic: author
 Dynamic: home-page
-Dynamic: license-file
 Dynamic: requires-python
 
 # Portfolio-lib 📈

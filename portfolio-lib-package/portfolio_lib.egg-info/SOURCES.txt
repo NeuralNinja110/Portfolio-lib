@@ -1,9 +1,9 @@
-LICENSE
 MANIFEST.in
 README.md
 pyproject.toml
 requirements.txt
 setup.py
+test.py
 portfolio_lib/__init__.py
 portfolio_lib/core.py
 portfolio_lib/indicators.py

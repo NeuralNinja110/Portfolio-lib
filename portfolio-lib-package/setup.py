@@ -21,7 +21,7 @@ def read_requirements():
 
 setup(
     name="portfolio-lib",
-    version="1.0.1",
+    version="1.0.2",
     
     # Author information (as specified in project requirements)
     author="Rahul Ashok, Pritham Devaprasad, Siddarth S, and Anish R",
@@ -33,11 +33,13 @@ setup(
     long_description_content_type="text/markdown",
     
     # URLs and metadata
-    url="https://github.com/portfolio-lib/portfolio-lib",
+    url="https://porttfolio.com/",
     project_urls={
-        "Bug Reports": "https://github.com/portfolio-lib/portfolio-lib/issues",
-        "Source": "https://github.com/portfolio-lib/portfolio-lib",
-        "Documentation": "https://portfolio-lib.readthedocs.io",
+        "Homepage": "https://porttfolio.com/",
+        "Documentation": "https://neuralninja110.github.io/Portfolio-lib/",
+        "Repository": "https://github.com/neuralninja110/portfolio-lib",
+        "Bug Reports": "https://github.com/neuralninja110/portfolio-lib/issues",
+        "Source": "https://github.com/neuralninja110/portfolio-lib",
     },
     
     # Package configuration
