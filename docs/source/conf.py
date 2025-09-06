@@ -111,9 +111,9 @@ html_sourcelink_suffix = '.rst'
 # Context for templates
 html_context = {
     "display_github": True,  # Set to True to enable GitHub integration
-    "github_user": "your-username",  # Replace with actual GitHub username
-    "github_repo": "Portfolio-lib",  # Replace with actual repo name
-    "github_version": "main",  # or master, depending on default branch
+    "github_user": "NeuralNinja110",  # Actual GitHub username
+    "github_repo": "Portfolio-lib",  # Actual repo name
+    "github_version": "main",  # Default branch
     "conf_py_path": "/docs/source/",
 }
 
@@ -182,7 +182,7 @@ intersphinx_mapping = {
 todo_include_todos = False
 
 # -- GitHub Pages configuration --
-html_baseurl = 'https://your-username.github.io/Portfolio-lib/'  # Replace with actual URL
+html_baseurl = 'https://neuralninja110.github.io/Portfolio-lib/'  # Actual GitHub Pages URL
 
 # -- Read the Docs configuration --
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -192,8 +192,8 @@ if on_rtd:
     # RTD-specific settings
     html_context.update({
         "display_github": True,
-        "github_user": "your-username",  # Replace with actual GitHub username
-        "github_repo": "Portfolio-lib",  # Replace with actual repo name
+        "github_user": "NeuralNinja110",  # Actual GitHub username
+        "github_repo": "Portfolio-lib",  # Actual repo name
         "github_version": "main",
         "conf_py_path": "/docs/source/",
     })

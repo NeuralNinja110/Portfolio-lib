@@ -103,7 +103,7 @@ python -m http.server 8000 -d build/html
 Update the following in `conf.py` for your repository:
 ```python
 html_context = {
-    "github_user": "your-username",
+    "github_user": "NeuralNinja110",
     "github_repo": "Portfolio-lib",
     "github_version": "main",
 }

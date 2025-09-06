@@ -105,7 +105,7 @@ For development installation:
 
 .. code-block:: bash
 
-   git clone https://github.com/your-username/portfolio-lib.git
+   git clone https://github.com/NeuralNinja110/Portfolio-lib.git
    cd portfolio-lib
    pip install -e .
 

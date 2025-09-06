@@ -31,7 +31,7 @@ Method 2: From Source
 
 .. code-block:: bash
 
-   git clone https://github.com/your-username/portfolio-lib.git
+   git clone https://github.com/NeuralNinja110/Portfolio-lib.git
    cd portfolio-lib
    pip install -e .
 
@@ -42,7 +42,7 @@ For contributors and developers:
 
 .. code-block:: bash
 
-   git clone https://github.com/your-username/portfolio-lib.git
+   git clone https://github.com/NeuralNinja110/Portfolio-lib.git
    cd portfolio-lib
    pip install -e ".[dev]"
 
@@ -180,7 +180,7 @@ Or build from source:
 
 .. code-block:: bash
 
-   git clone https://github.com/your-username/portfolio-lib.git
+   git clone https://github.com/NeuralNinja110/Portfolio-lib.git
    cd portfolio-lib
    docker build -t my-portfolio-lib .
    docker run -it my-portfolio-lib python
