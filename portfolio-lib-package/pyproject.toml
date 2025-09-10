@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "portfolio-lib"
-version = "1.0.2"
+version = "1.1.0"
 authors = [
     {name = "Rahul Ashok", email = "contact@portfolio-lib.com"},
     {name = "Pritham Devaprasad", email = "contact@portfolio-lib.com"},

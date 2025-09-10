@@ -34,7 +34,7 @@ Basic Usage:
     >>> print(results.summary())
 """
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __author__ = "Rahul Ashok, Pritham Devaprasad, Siddarth S, and Anish R"
 __email__ = "contact@portfolio-lib.com"
 __description__ = "Lightweight Python backtesting library for algorithmic trading"

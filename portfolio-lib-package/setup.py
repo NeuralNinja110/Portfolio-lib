@@ -21,7 +21,7 @@ def read_requirements():
 
 setup(
     name="portfolio-lib",
-    version="1.0.2",
+    version="1.1.0",
     
     # Author information (as specified in project requirements)
     author="Rahul Ashok, Pritham Devaprasad, Siddarth S, and Anish R",

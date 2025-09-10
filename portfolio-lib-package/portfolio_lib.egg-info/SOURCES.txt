@@ -1,9 +1,12 @@
 MANIFEST.in
 README.md
+comprehensive_test.py
+debug_indicators.py
 pyproject.toml
 requirements.txt
 setup.py
 test.py
+test_new_indicators.py
 portfolio_lib/__init__.py
 portfolio_lib/core.py
 portfolio_lib/indicators.py

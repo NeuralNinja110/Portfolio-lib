@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: portfolio-lib
-Version: 1.0.2
+Version: 1.1.0
 Summary: Lightweight Python backtesting library for algorithmic trading strategies
 Home-page: https://porttfolio.com/
 Author: Rahul Ashok, Pritham Devaprasad, Siddarth S, and Anish R
@@ -68,7 +68,7 @@ Portfolio-lib is a comprehensive, ultra-lightweight backtesting framework design
 - Optimized for speed and efficiency
 
 ### 📊 **Comprehensive Technical Analysis**
-- **81+ Technical Indicators** built-in
+- **129 Technical Indicators** built-in
 - SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic, ADX, and more
 - Custom indicator support with easy extensibility
 
