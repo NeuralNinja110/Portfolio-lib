@@ -39,8 +39,8 @@ Portfolio-lib/
 ## Package Features
 
 ### Technical Analysis
-- **17+ Technical Indicators**: SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic Oscillator, ADX, ATR, CCI, OBV, MFI, Momentum, ROC, Williams %R, Parabolic SAR, Ichimoku Kinko Hyo
-- **Advanced Indicators**: 60+ specialized indicators including TRIX, Schiff Trend Cycle, Rainbow Oscillator, Fractal Indicator, Hilbert Transform
+- **129 Technical Indicators**: Complete suite including SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic Oscillator, ADX, ATR, CCI, OBV, MFI, Momentum, ROC, Williams %R, Parabolic SAR, Ichimoku Kinko Hyo, VWAP, SuperTrend, Keltner Channels, Donchian Channels, Aroon, and many more
+- **Advanced Indicators**: Specialized indicators including TRIX, Schaff Trend Cycle, Rainbow Oscillator, Fractal Indicator, Hilbert Transform, Vortex Indicator, Elder Ray Index, Chaikin Oscillator
 - **Mathematical Foundations**: Comprehensive formula implementations with numerical stability
 
 ### Portfolio Analytics

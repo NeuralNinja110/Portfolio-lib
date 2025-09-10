@@ -1161,5 +1161,5 @@ Keltner Channels use exponential moving averages and the Average True Range to s
    print('Middle Line:', middle[-5:])
    print('Lower Channel:', lower[-5:])
 
-And 17 more advanced indicators including Aroon, CMO, DPO, Force Index, TRIX, Williams A/D, Chaikin Oscillator, Elder Ray Index, and many others with complete mathematical formulations and examples.
+And 20 more advanced indicators including Aroon, CMO, DPO, Force Index, TRIX, Williams A/D, Chaikin Oscillator, Elder Ray Index, and many others with complete mathematical formulations and examples.
 

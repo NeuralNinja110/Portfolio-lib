@@ -10,7 +10,7 @@ portfolio-lib documentation
 Welcome to portfolio-lib's documentation!
 ==========================================
 
-portfolio-lib is a comprehensive Python library for quantitative finance and portfolio management. It provides advanced technical indicators, portfolio analytics, risk metrics, and trading tools for both individual investors and institutional users.
+portfolio-lib is a comprehensive Python library for quantitative finance and portfolio management. It provides 129 advanced technical indicators, portfolio analytics, risk metrics, and trading tools for both individual investors and institutional users.
 
 .. toctree::
    :maxdepth: 2
@@ -44,7 +44,7 @@ What is portfolio-lib?
 
 portfolio-lib is designed for:
 
-* **Technical Analysis**: 17+ technical indicators with mathematical formulas
+* **Technical Analysis**: 129 technical indicators with mathematical formulas
 * **Portfolio Management**: Advanced risk analytics and position sizing
 * **Risk Assessment**: VaR, CVaR, drawdown analysis, and more
 * **Performance Attribution**: Sector and factor-based analysis

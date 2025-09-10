@@ -11,7 +11,7 @@ for developing and testing quantitative trading strategies.
 
 Key Features:
 - Ultra-lightweight architecture (< 500KB)
-- 81+ technical indicators
+- 129 technical indicators
 - Event-driven backtesting engine
 - Multi-asset portfolio simulation
 - Comprehensive performance analytics

@@ -18,7 +18,7 @@ Portfolio-lib is a comprehensive, ultra-lightweight backtesting framework design
 - Optimized for speed and efficiency
 
 ### 📊 **Comprehensive Technical Analysis**
-- **81+ Technical Indicators** built-in
+- **129 Technical Indicators** built-in
 - SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic, ADX, and more
 - Custom indicator support with easy extensibility
 
