@@ -1078,3 +1078,88 @@ Where :math:`\alpha = \frac{2}{N+1}` and :math:`N` is the period.
    plt.title('Exponential Moving Average')
    plt.show()
 
+
+
+New Advanced Technical Indicators
+=================================
+
+VWAP (Volume Weighted Average Price)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Description:**
+VWAP is a trading benchmark that represents the average price a security has traded at throughout the day, based on both volume and price.
+
+**Formula:**
+
+.. math::
+   VWAP = \frac{\sum (Price \times Volume)}{\sum Volume}
+
+**Example:**
+
+.. code-block:: python
+
+   import pandas as pd
+   import numpy as np
+   from portfolio_lib.indicators import TechnicalIndicators
+   
+   data = pd.DataFrame({
+       'high': [105, 108, 110, 107, 109],
+       'low': [95, 98, 100, 97, 99],
+       'close': [100, 103, 105, 102, 104],
+       'volume': [1000, 1500, 1200, 1100, 1300]
+   })
+   
+   vwap = TechnicalIndicators.vwap(data)
+   print(vwap)
+
+SuperTrend Indicator
+~~~~~~~~~~~~~~~~~~~
+
+**Description:**
+SuperTrend is a trend-following indicator based on Average True Range (ATR). It provides dynamic support and resistance levels.
+
+**Example:**
+
+.. code-block:: python
+
+   import pandas as pd
+   import numpy as np
+   from portfolio_lib.indicators import TechnicalIndicators
+   
+   data = pd.DataFrame({
+       'high': [105, 108, 110, 107, 109, 112, 115, 113, 116, 118],
+       'low': [95, 98, 100, 97, 99, 102, 105, 103, 106, 108],
+       'close': [100, 103, 105, 102, 104, 107, 110, 108, 111, 113]
+   })
+   
+   supertrend, trend = TechnicalIndicators.supertrend(data, period=3, multiplier=2.0)
+   print('SuperTrend:', supertrend)
+   print('Trend:', trend)
+
+Keltner Channels
+~~~~~~~~~~~~~~~
+
+**Description:**
+Keltner Channels use exponential moving averages and the Average True Range to set channel lines above and below price.
+
+**Example:**
+
+.. code-block:: python
+
+   import pandas as pd
+   import numpy as np
+   from portfolio_lib.indicators import TechnicalIndicators
+   
+   data = pd.DataFrame({
+       'high': np.random.normal(110, 5, 20),
+       'low': np.random.normal(90, 5, 20),
+       'close': np.random.normal(100, 5, 20)
+   })
+   
+   upper, middle, lower = TechnicalIndicators.keltner_channels(data, period=10, multiplier=2.0)
+   print('Upper Channel:', upper[-5:])
+   print('Middle Line:', middle[-5:])
+   print('Lower Channel:', lower[-5:])
+
+And 17 more advanced indicators including Aroon, CMO, DPO, Force Index, TRIX, Williams A/D, Chaikin Oscillator, Elder Ray Index, and many others with complete mathematical formulations and examples.
+

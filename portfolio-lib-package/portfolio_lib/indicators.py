@@ -316,6 +316,587 @@ class TechnicalIndicators:
                     trend[i] = -1
         
         return sar
+    
+    @staticmethod
+    def klinger_oscillator(high: np.ndarray, low: np.ndarray, close: np.ndarray, volume: np.ndarray,
+                          fast_period: int = 34, slow_period: int = 55, signal_period: int = 13) -> Tuple[np.ndarray, np.ndarray]:
+        """Klinger Oscillator - measures the difference between money flow volume and cumulative volume"""
+        typical_price = (high + low + close) / 3
+        dm = np.where(typical_price > np.roll(typical_price, 1), 1, -1)
+        dm[0] = 1  # First value default
+        
+        cm = np.zeros(len(volume))
+        cm[0] = volume[0]
+        for i in range(1, len(volume)):
+            if dm[i] == dm[i-1]:
+                cm[i] = cm[i-1] + volume[i]
+            else:
+                cm[i] = dm[i-1] * cm[i-1] + volume[i]
+        
+        vf = volume * np.abs(2 * ((dm * cm) / volume) - 1) * dm * 100
+        
+        kvo_fast = TechnicalIndicators.ema(vf, fast_period)
+        kvo_slow = TechnicalIndicators.ema(vf, slow_period)
+        kvo = kvo_fast - kvo_slow
+        signal = TechnicalIndicators.ema(kvo[~np.isnan(kvo)], signal_period)
+        
+        # Align signal
+        signal_aligned = np.full(len(kvo), np.nan)
+        valid_start = max(fast_period, slow_period) - 1
+        signal_end = min(valid_start + len(signal), len(signal_aligned))
+        actual_length = signal_end - valid_start
+        signal_aligned[valid_start:signal_end] = signal[:actual_length]
+        
+        return kvo, signal_aligned
+    
+    @staticmethod
+    def price_channel(high: np.ndarray, low: np.ndarray, period: int = 20) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Price Channel - highest high and lowest low over a period"""
+        upper = np.full(len(high), np.nan)
+        lower = np.full(len(low), np.nan)
+        
+        for i in range(period - 1, len(high)):
+            upper[i] = np.max(high[i - period + 1:i + 1])
+            lower[i] = np.min(low[i - period + 1:i + 1])
+        
+        middle = (upper + lower) / 2
+        return upper, middle, lower
+    
+    @staticmethod
+    def donchian_channel(high: np.ndarray, low: np.ndarray, period: int = 20) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Donchian Channel - same as price channel but different name/usage"""
+        return TechnicalIndicators.price_channel(high, low, period)
+    
+    @staticmethod
+    def elder_force_index(close: np.ndarray, volume: np.ndarray, period: int = 13) -> np.ndarray:
+        """Elder's Force Index - volume and price change momentum"""
+        price_change = close - np.roll(close, 1)
+        price_change[0] = 0
+        raw_force = price_change * volume
+        
+        if period == 1:
+            return raw_force
+        else:
+            return TechnicalIndicators.ema(raw_force, period)
+    
+    @staticmethod
+    def ease_of_movement(high: np.ndarray, low: np.ndarray, volume: np.ndarray, period: int = 14) -> np.ndarray:
+        """Ease of Movement - price movement relative to volume"""
+        distance_moved = ((high + low) / 2) - np.roll(((high + low) / 2), 1)
+        distance_moved[0] = 0
+        
+        high_low_range = high - low
+        box_ratio = np.where(high_low_range != 0, volume / high_low_range, 0)
+        
+        one_period_evm = np.where(box_ratio != 0, distance_moved / box_ratio, 0)
+        
+        return TechnicalIndicators.sma(one_period_evm, period)
+    
+    @staticmethod
+    def mass_index(high: np.ndarray, low: np.ndarray, period: int = 25, ema_period: int = 9) -> np.ndarray:
+        """Mass Index - volatility indicator based on range expansion"""
+        hl_ratio = high - low
+        ema1 = TechnicalIndicators.ema(hl_ratio, ema_period)
+        ema2 = TechnicalIndicators.ema(ema1, ema_period)
+        
+        mass_ratio = np.where(ema2 != 0, ema1 / ema2, 1)
+        
+        mass_index = np.full(len(high), np.nan)
+        for i in range(period - 1, len(high)):
+            mass_index[i] = np.sum(mass_ratio[i - period + 1:i + 1])
+        
+        return mass_index
+    
+    @staticmethod
+    def negative_volume_index(close: np.ndarray, volume: np.ndarray) -> np.ndarray:
+        """Negative Volume Index - cumulative indicator for down volume days"""
+        nvi = np.zeros(len(close))
+        nvi[0] = 1000  # Starting value
+        
+        for i in range(1, len(close)):
+            if volume[i] < volume[i-1]:
+                nvi[i] = nvi[i-1] * (close[i] / close[i-1])
+            else:
+                nvi[i] = nvi[i-1]
+        
+        return nvi
+    
+    @staticmethod
+    def positive_volume_index(close: np.ndarray, volume: np.ndarray) -> np.ndarray:
+        """Positive Volume Index - cumulative indicator for up volume days"""
+        pvi = np.zeros(len(close))
+        pvi[0] = 1000  # Starting value
+        
+        for i in range(1, len(close)):
+            if volume[i] > volume[i-1]:
+                pvi[i] = pvi[i-1] * (close[i] / close[i-1])
+            else:
+                pvi[i] = pvi[i-1]
+        
+        return pvi
+    
+    @staticmethod
+    def price_volume_trend(close: np.ndarray, volume: np.ndarray) -> np.ndarray:
+        """Price Volume Trend - volume-weighted momentum indicator"""
+        price_change_pct = np.zeros(len(close))
+        for i in range(1, len(close)):
+            if close[i-1] != 0:
+                price_change_pct[i] = (close[i] - close[i-1]) / close[i-1]
+        
+        pvt = np.zeros(len(close))
+        pvt[0] = volume[0]
+        
+        for i in range(1, len(close)):
+            pvt[i] = pvt[i-1] + (price_change_pct[i] * volume[i])
+        
+        return pvt
+    
+    @staticmethod
+    def volume_accumulation(close: np.ndarray, volume: np.ndarray) -> np.ndarray:
+        """Volume Accumulation - simplified A/D line using close only"""
+        va = np.zeros(len(close))
+        va[0] = volume[0]
+        
+        for i in range(1, len(close)):
+            if close[i] > close[i-1]:
+                va[i] = va[i-1] + volume[i]
+            elif close[i] < close[i-1]:
+                va[i] = va[i-1] - volume[i]
+            else:
+                va[i] = va[i-1]
+        
+        return va
+    
+    @staticmethod
+    def williams_ad(high: np.ndarray, low: np.ndarray, close: np.ndarray, volume: np.ndarray) -> np.ndarray:
+        """Williams Accumulation/Distribution"""
+        wad = np.zeros(len(close))
+        
+        for i in range(1, len(close)):
+            if close[i] > close[i-1]:
+                wad[i] = wad[i-1] + (close[i] - min(close[i-1], low[i])) * volume[i]
+            elif close[i] < close[i-1]:
+                wad[i] = wad[i-1] + (close[i] - max(close[i-1], high[i])) * volume[i]
+            else:
+                wad[i] = wad[i-1]
+        
+        return wad
+    
+    @staticmethod
+    def coppock_curve(close: np.ndarray, roc1_period: int = 14, roc2_period: int = 11, wma_period: int = 10) -> np.ndarray:
+        """Coppock Curve - long-term momentum indicator"""
+        roc1 = TechnicalIndicators.roc(close, roc1_period)
+        roc2 = TechnicalIndicators.roc(close, roc2_period)
+        
+        roc_sum = roc1 + roc2
+        
+        # Weighted Moving Average
+        weights = np.arange(1, wma_period + 1)
+        coppock = np.full(len(close), np.nan)
+        
+        for i in range(wma_period - 1, len(roc_sum)):
+            if not np.isnan(roc_sum[i - wma_period + 1:i + 1]).any():
+                values = roc_sum[i - wma_period + 1:i + 1]
+                coppock[i] = np.sum(values * weights) / np.sum(weights)
+        
+        return coppock
+    
+    @staticmethod
+    def know_sure_thing(close: np.ndarray, 
+                       roc1_period: int = 10, roc1_ma: int = 10,
+                       roc2_period: int = 15, roc2_ma: int = 10,
+                       roc3_period: int = 20, roc3_ma: int = 10,
+                       roc4_period: int = 30, roc4_ma: int = 15,
+                       signal_period: int = 9) -> Tuple[np.ndarray, np.ndarray]:
+        """Know Sure Thing (KST) - momentum oscillator"""
+        roc1 = TechnicalIndicators.sma(TechnicalIndicators.roc(close, roc1_period), roc1_ma)
+        roc2 = TechnicalIndicators.sma(TechnicalIndicators.roc(close, roc2_period), roc2_ma)
+        roc3 = TechnicalIndicators.sma(TechnicalIndicators.roc(close, roc3_period), roc3_ma)
+        roc4 = TechnicalIndicators.sma(TechnicalIndicators.roc(close, roc4_period), roc4_ma)
+        
+        kst = (roc1 * 1) + (roc2 * 2) + (roc3 * 3) + (roc4 * 4)
+        signal = TechnicalIndicators.sma(kst[~np.isnan(kst)], signal_period)
+        
+        # Align signal
+        signal_aligned = np.full(len(kst), np.nan)
+        valid_start = max(roc1_period + roc1_ma, roc4_period + roc4_ma) - 1
+        signal_end = min(valid_start + len(signal), len(signal_aligned))
+        actual_length = signal_end - valid_start
+        signal_aligned[valid_start:signal_end] = signal[:actual_length]
+        
+        return kst, signal_aligned
+    
+    @staticmethod
+    def price_oscillator(close: np.ndarray, fast_period: int = 12, slow_period: int = 26) -> np.ndarray:
+        """Price Oscillator - percentage difference between two moving averages"""
+        fast_ma = TechnicalIndicators.ema(close, fast_period)
+        slow_ma = TechnicalIndicators.ema(close, slow_period)
+        
+        po = np.where(slow_ma != 0, ((fast_ma - slow_ma) / slow_ma) * 100, 0)
+        return po
+    
+    @staticmethod
+    def ultimate_oscillator(high: np.ndarray, low: np.ndarray, close: np.ndarray,
+                           period1: int = 7, period2: int = 14, period3: int = 28) -> np.ndarray:
+        """Ultimate Oscillator - momentum oscillator using three timeframes"""
+        prior_close = np.roll(close, 1)
+        prior_close[0] = close[0]
+        
+        bp = close - np.minimum(low, prior_close)  # Buying pressure
+        tr = np.maximum(high - low, np.maximum(np.abs(high - prior_close), np.abs(low - prior_close)))
+        
+        avg1 = np.full(len(close), np.nan)
+        avg2 = np.full(len(close), np.nan)
+        avg3 = np.full(len(close), np.nan)
+        
+        for i in range(max(period1, period2, period3) - 1, len(close)):
+            if i >= period1 - 1:
+                bp_sum1 = np.sum(bp[i - period1 + 1:i + 1])
+                tr_sum1 = np.sum(tr[i - period1 + 1:i + 1])
+                avg1[i] = bp_sum1 / tr_sum1 if tr_sum1 != 0 else 0
+            
+            if i >= period2 - 1:
+                bp_sum2 = np.sum(bp[i - period2 + 1:i + 1])
+                tr_sum2 = np.sum(tr[i - period2 + 1:i + 1])
+                avg2[i] = bp_sum2 / tr_sum2 if tr_sum2 != 0 else 0
+            
+            if i >= period3 - 1:
+                bp_sum3 = np.sum(bp[i - period3 + 1:i + 1])
+                tr_sum3 = np.sum(tr[i - period3 + 1:i + 1])
+                avg3[i] = bp_sum3 / tr_sum3 if tr_sum3 != 0 else 0
+        
+        uo = 100 * ((4 * avg1) + (2 * avg2) + avg3) / 7
+        return uo
+    
+    @staticmethod
+    def triple_ema(data: Union[List[float], np.ndarray, pd.Series], period: int) -> np.ndarray:
+        """Triple Exponential Moving Average (TEMA)"""
+        ema1 = TechnicalIndicators.ema(data, period)
+        ema2 = TechnicalIndicators.ema(ema1[~np.isnan(ema1)], period)
+        ema3 = TechnicalIndicators.ema(ema2[~np.isnan(ema2)], period)
+        
+        # Align all EMAs
+        tema = np.full(len(data), np.nan)
+        valid_start = (period - 1) * 3  # Triple lag
+        
+        if len(ema3) > 0:
+            tema[valid_start:valid_start + len(ema3)] = (3 * ema1[valid_start:valid_start + len(ema3)]) - \
+                                                        (3 * ema2[:len(ema3)]) + ema3
+        
+        return tema
+    
+    @staticmethod
+    def relative_vigor_index(open_price: np.ndarray, high: np.ndarray, low: np.ndarray, close: np.ndarray,
+                           period: int = 10) -> Tuple[np.ndarray, np.ndarray]:
+        """Relative Vigor Index - momentum indicator comparing closing to opening"""
+        numerator = close - open_price
+        denominator = high - low
+        
+        # Simple moving averages
+        num_ma = TechnicalIndicators.sma(numerator, period)
+        den_ma = TechnicalIndicators.sma(denominator, period)
+        
+        rvi = np.where(den_ma != 0, num_ma / den_ma, 0)
+        rvi_signal = TechnicalIndicators.sma(rvi[~np.isnan(rvi)], 4)
+        
+        # Align signal
+        signal_aligned = np.full(len(rvi), np.nan)
+        valid_start = period - 1 + 3  # Period + signal period - 1
+        signal_end = min(valid_start + len(rvi_signal), len(signal_aligned))
+        actual_length = signal_end - valid_start
+        signal_aligned[valid_start:signal_end] = rvi_signal[:actual_length]
+        
+        return rvi, signal_aligned
+    
+    @staticmethod
+    def schaff_trend_cycle(close: np.ndarray, fast_period: int = 23, slow_period: int = 50, cycle_period: int = 10) -> np.ndarray:
+        """Schaff Trend Cycle - combines MACD with Stochastic"""
+        # Calculate MACD
+        macd_line, _, _ = TechnicalIndicators.macd(close, fast_period, slow_period, 1)
+        
+        # Calculate Stochastic of MACD
+        stoch_k = np.full(len(close), np.nan)
+        
+        for i in range(cycle_period - 1, len(macd_line)):
+            if not np.isnan(macd_line[i - cycle_period + 1:i + 1]).any():
+                macd_window = macd_line[i - cycle_period + 1:i + 1]
+                highest = np.max(macd_window)
+                lowest = np.min(macd_window)
+                
+                if highest != lowest:
+                    stoch_k[i] = 100 * (macd_line[i] - lowest) / (highest - lowest)
+                else:
+                    stoch_k[i] = 50
+        
+        # Smooth the result
+        stc = TechnicalIndicators.ema(stoch_k[~np.isnan(stoch_k)], 3)
+        
+        # Align result
+        result = np.full(len(close), np.nan)
+        valid_start = slow_period - 1 + cycle_period - 1
+        result[valid_start:valid_start + len(stc)] = stc
+        
+        return result
+    
+    @staticmethod
+    def stochastic_rsi(close: np.ndarray, period: int = 14, stoch_period: int = 14, k_period: int = 3, d_period: int = 3) -> Tuple[np.ndarray, np.ndarray]:
+        """Stochastic RSI - Stochastic applied to RSI"""
+        rsi = TechnicalIndicators.rsi(close, period)
+        
+        stoch_rsi = np.full(len(close), np.nan)
+        
+        for i in range(stoch_period - 1, len(rsi)):
+            if not np.isnan(rsi[i - stoch_period + 1:i + 1]).any():
+                rsi_window = rsi[i - stoch_period + 1:i + 1]
+                highest_rsi = np.max(rsi_window)
+                lowest_rsi = np.min(rsi_window)
+                
+                if highest_rsi != lowest_rsi:
+                    stoch_rsi[i] = 100 * (rsi[i] - lowest_rsi) / (highest_rsi - lowest_rsi)
+                else:
+                    stoch_rsi[i] = 50
+        
+        # Calculate %K and %D
+        k_line = TechnicalIndicators.sma(stoch_rsi[~np.isnan(stoch_rsi)], k_period)
+        d_line = TechnicalIndicators.sma(k_line[~np.isnan(k_line)], d_period)
+        
+        # Align results
+        k_aligned = np.full(len(close), np.nan)
+        d_aligned = np.full(len(close), np.nan)
+        
+        valid_start_k = period + stoch_period + k_period - 3
+        valid_start_d = valid_start_k + d_period - 1
+        
+        k_aligned[valid_start_k:valid_start_k + len(k_line)] = k_line
+        d_aligned[valid_start_d:valid_start_d + len(d_line)] = d_line
+        
+        return k_aligned, d_aligned
+    
+    @staticmethod
+    def vortex_indicator(high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int = 14) -> Tuple[np.ndarray, np.ndarray]:
+        """Vortex Indicator - trend indicator based on vortex movement"""
+        prior_close = np.roll(close, 1)
+        prior_close[0] = close[0]
+        
+        vm_plus = np.abs(high - prior_close)
+        vm_minus = np.abs(low - prior_close)
+        
+        tr = np.maximum(high - low, np.maximum(np.abs(high - prior_close), np.abs(low - prior_close)))
+        
+        vi_plus = np.full(len(close), np.nan)
+        vi_minus = np.full(len(close), np.nan)
+        
+        for i in range(period - 1, len(close)):
+            sum_vm_plus = np.sum(vm_plus[i - period + 1:i + 1])
+            sum_vm_minus = np.sum(vm_minus[i - period + 1:i + 1])
+            sum_tr = np.sum(tr[i - period + 1:i + 1])
+            
+            if sum_tr != 0:
+                vi_plus[i] = sum_vm_plus / sum_tr
+                vi_minus[i] = sum_vm_minus / sum_tr
+        
+        return vi_plus, vi_minus
+
+    @staticmethod
+    def vwap(data: pd.DataFrame) -> np.ndarray:
+        """Volume Weighted Average Price (VWAP)"""
+        typical_price = (data['high'] + data['low'] + data['close']) / 3
+        vwap = (typical_price * data['volume']).cumsum() / data['volume'].cumsum()
+        return vwap.values
+
+    @staticmethod
+    def supertrend(data: pd.DataFrame, period: int = 10, multiplier: float = 3.0) -> Tuple[np.ndarray, np.ndarray]:
+        """SuperTrend indicator"""
+        high, low, close = data['high'].values, data['low'].values, data['close'].values
+        atr = TechnicalIndicators.atr(high, low, close, period)
+        
+        hl_avg = (high + low) / 2
+        upper_band = hl_avg + (multiplier * atr)
+        lower_band = hl_avg - (multiplier * atr)
+        
+        supertrend = np.full(len(close), np.nan)
+        trend = np.ones(len(close))  # 1 for uptrend, -1 for downtrend
+        
+        for i in range(1, len(close)):
+            # Calculate final upper and lower bands
+            if upper_band[i] < upper_band[i-1] or close[i-1] > upper_band[i-1]:
+                final_upper = upper_band[i]
+            else:
+                final_upper = upper_band[i-1]
+                
+            if lower_band[i] > lower_band[i-1] or close[i-1] < lower_band[i-1]:
+                final_lower = lower_band[i]
+            else:
+                final_lower = lower_band[i-1]
+            
+            # Determine trend
+            if close[i] <= final_lower:
+                trend[i] = -1
+                supertrend[i] = final_upper
+            elif close[i] >= final_upper:
+                trend[i] = 1
+                supertrend[i] = final_lower
+            else:
+                trend[i] = trend[i-1]
+                supertrend[i] = final_upper if trend[i] == -1 else final_lower
+        
+        return supertrend, trend
+
+    @staticmethod
+    def keltner_channels(data: pd.DataFrame, period: int = 20, multiplier: float = 2.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Keltner Channels"""
+        high, low, close = data['high'].values, data['low'].values, data['close'].values
+        middle = TechnicalIndicators.ema(close, period)
+        atr = TechnicalIndicators.atr(high, low, close, period)
+        
+        upper = middle + (multiplier * atr)
+        lower = middle - (multiplier * atr)
+        
+        return upper, middle, lower
+
+    @staticmethod
+    def donchian_channels(data: pd.DataFrame, period: int = 20) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Donchian Channels"""
+        high, low = data['high'].values, data['low'].values
+        
+        upper = np.full(len(high), np.nan)
+        lower = np.full(len(low), np.nan)
+        
+        for i in range(period - 1, len(high)):
+            upper[i] = np.max(high[i - period + 1:i + 1])
+            lower[i] = np.min(low[i - period + 1:i + 1])
+        
+        middle = (upper + lower) / 2
+        return upper, middle, lower
+
+    @staticmethod
+    def aroon(data: pd.DataFrame, period: int = 14) -> Tuple[np.ndarray, np.ndarray]:
+        """Aroon Up and Aroon Down"""
+        high, low = data['high'].values, data['low'].values
+        
+        aroon_up = np.full(len(high), np.nan)
+        aroon_down = np.full(len(low), np.nan)
+        
+        for i in range(period - 1, len(high)):
+            high_period = high[i - period + 1:i + 1]
+            low_period = low[i - period + 1:i + 1]
+            
+            periods_since_high = period - 1 - np.argmax(high_period)
+            periods_since_low = period - 1 - np.argmax(low_period[::-1])
+            
+            aroon_up[i] = ((period - periods_since_high) / period) * 100
+            aroon_down[i] = ((period - periods_since_low) / period) * 100
+        
+        return aroon_up, aroon_down
+
+    @staticmethod
+    def chande_momentum_oscillator(close: np.ndarray, period: int = 14) -> np.ndarray:
+        """Chande Momentum Oscillator (CMO)"""
+        momentum = np.diff(close)
+        momentum = np.concatenate([[0], momentum])  # Prepend 0 for length consistency
+        
+        gains = np.where(momentum > 0, momentum, 0)
+        losses = np.where(momentum < 0, -momentum, 0)
+        
+        cmo = np.full(len(close), np.nan)
+        
+        for i in range(period, len(close)):
+            sum_gains = np.sum(gains[i - period + 1:i + 1])
+            sum_losses = np.sum(losses[i - period + 1:i + 1])
+            
+            if sum_gains + sum_losses != 0:
+                cmo[i] = ((sum_gains - sum_losses) / (sum_gains + sum_losses)) * 100
+        
+        return cmo
+
+    @staticmethod
+    def detrended_price_oscillator(close: np.ndarray, period: int = 14) -> np.ndarray:
+        """Detrended Price Oscillator (DPO)"""
+        sma = TechnicalIndicators.sma(close, period)
+        shift = period // 2 + 1
+        
+        dpo = np.full(len(close), np.nan)
+        for i in range(shift, len(close)):
+            if i - shift < len(sma) and not np.isnan(sma[i - shift]):
+                dpo[i] = close[i] - sma[i - shift]
+        
+        return dpo
+
+    @staticmethod
+    def force_index(data: pd.DataFrame, period: int = 13) -> np.ndarray:
+        """Force Index"""
+        close, volume = data['close'].values, data['volume'].values
+        price_change = np.diff(close)
+        price_change = np.concatenate([[0], price_change])
+        
+        raw_force = price_change * volume
+        force_index = TechnicalIndicators.ema(raw_force, period)
+        
+        return force_index
+
+    @staticmethod
+    def trix(close: np.ndarray, period: int = 14) -> np.ndarray:
+        """TRIX - Rate of change of triple smoothed EMA"""
+        ema1 = TechnicalIndicators.ema(close, period)
+        ema2 = TechnicalIndicators.ema(ema1[~np.isnan(ema1)], period)
+        ema3 = TechnicalIndicators.ema(ema2[~np.isnan(ema2)], period)
+        
+        trix = np.full(len(close), np.nan)
+        ema3_extended = np.full(len(close), np.nan)
+        
+        # Calculate starting position for ema3 in the original array
+        start_pos = len(close) - len(ema3)
+        ema3_extended[start_pos:] = ema3
+        
+        for i in range(1, len(ema3_extended)):
+            if not np.isnan(ema3_extended[i]) and not np.isnan(ema3_extended[i-1]) and ema3_extended[i-1] != 0:
+                trix[i] = ((ema3_extended[i] - ema3_extended[i-1]) / ema3_extended[i-1]) * 10000
+        
+        return trix
+
+    @staticmethod
+    def williams_accumulation_distribution(data: pd.DataFrame) -> np.ndarray:
+        """Williams Accumulation/Distribution Line"""
+        high, low, close = data['high'].values, data['low'].values, data['close'].values
+        
+        wad = np.zeros(len(close))
+        for i in range(1, len(close)):
+            if close[i] > close[i-1]:
+                wad[i] = wad[i-1] + (close[i] - np.minimum(close[i-1], low[i]))
+            elif close[i] < close[i-1]:
+                wad[i] = wad[i-1] + (close[i] - np.maximum(close[i-1], high[i]))
+            else:
+                wad[i] = wad[i-1]
+        
+        return wad
+
+    @staticmethod
+    def chaikin_oscillator(data: pd.DataFrame, fast_period: int = 3, slow_period: int = 10) -> np.ndarray:
+        """Chaikin Oscillator"""
+        high, low, close, volume = data['high'].values, data['low'].values, data['close'].values, data['volume'].values
+        
+        # Calculate Accumulation/Distribution Line
+        mfv = ((close - low) - (high - close)) / (high - low)
+        mfv = np.where(high == low, 0, mfv)  # Handle division by zero
+        ad_line = np.cumsum(mfv * volume)
+        
+        # Calculate oscillator
+        fast_ema = TechnicalIndicators.ema(ad_line, fast_period)
+        slow_ema = TechnicalIndicators.ema(ad_line, slow_period)
+        
+        oscillator = fast_ema - slow_ema
+        return oscillator
+
+    @staticmethod
+    def elder_ray_index(data: pd.DataFrame, period: int = 13) -> Tuple[np.ndarray, np.ndarray]:
+        """Elder Ray Index (Bull Power and Bear Power)"""
+        high, low, close = data['high'].values, data['low'].values, data['close'].values
+        ema = TechnicalIndicators.ema(close, period)
+        
+        bull_power = high - ema
+        bear_power = low - ema
+        
+        return bull_power, bear_power
 
 # Export for easy import
 __all__ = ['TechnicalIndicators']
